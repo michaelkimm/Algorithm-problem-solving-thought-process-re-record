@@ -41,3 +41,26 @@ def CalculateConv(kernel_, ary_, si, sj):
     for j in range(len(kernel_[0])):
       result += kernel_[i][j] * ary_[si + i][sj + j]
   return result
+
+def dfs(curNode, visited, graph):
+  visited[curNode] = True
+  print("v:", curNode)
+
+  for adjNode in graph[curNode]:
+    if not visited[adjNode]:
+      dfs(adjNode, visited, graph)
+
+from collections import deque
+
+def bfs(start, visited, graph):
+  queue = deque([start])
+  visited[start] = True
+
+  while queue:
+    curNode = queue.popleft()
+    print("v:", curNode)
+
+    for adjNode in graph[curNode]:
+      if not visited[adjNode]:
+        visited[adjNode] = True
+        queue.append(adjNode)
