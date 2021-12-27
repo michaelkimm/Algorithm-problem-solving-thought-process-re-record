@@ -1,0 +1,98 @@
+from collections import deque
+
+def solution(board):
+    answer = 0
+    robot = Robot((0, 0), 0, board)
+    return answer
+
+class Robot:
+  def __init__(self, center, direction, mapGraph):
+    self.center = center
+    # 0=가로 우, 1=세로 하, 2= 가로 좌, 3 = 세로 상
+    self.dir = direction
+    self.mapGraph = mapGraph
+
+
+  def Move(self):
+    ni, nj = self.GetNextPose()
+    
+    if self.Movable(ni, nj, self.dir):
+      self.center = (ni, nj)
+
+  def GetNextPose(self):
+    ni = 0
+    nj = 0
+    # 가로 이동
+    if self.dir == 0 or self.dir == 2:
+      ni = self.center[0]
+      nj = self.center[1] + 1
+    # 세로 이동
+    elif self.dir == 1 or self.dir == 3:
+      ni = self.center[0] + 1
+      nj = self.center[1]
+    return ni, nj
+
+  def Rotate(self, cw, isCenterMoveD):
+    if isCenterMoveD == 0:
+      newDir = self.dir
+      if cw == 1:
+        newDir = self.dir + 1 if self.dir + 1 < 4 else 0
+      else:
+        newDir = self.dir - 1 if self.dir - 1 >= 0 else 0
+
+      if self.Movable(self.center[0], self.center[1], newDir):
+        self.dir = newDir
+    else:
+      # 180도 방향
+      newDir = self.dir + 2 if self.dir + 2 < 4 else self.dir + 2 - 4
+      ni, nj = self.GetNextPose()
+      if cw == 1:
+        newDir = newDir + 1 if newDir + 1 < 4 else 0
+      else:
+        newDir = newDir - 1 if newDir - 1 >= 0 else 0
+
+      if self.Movable(ni, nj, newDir):
+        self.center = (ni, nj)
+        self.dir = newDir
+
+  def Movable(self, ci, cj, direction):
+    if direction == 0:
+      if (0 <= ci < len(self.mapGraph) and 0 <= cj < len(self.mapGraph[0]) ) and (0 <= ci < len(self.mapGraph) and 0 <= cj + 1 < len(self.mapGraph[0]) ):
+        if self.mapGraph[ci][cj] == 0 and self.mapGraph[ci][cj + 1] == 0:
+          return True
+        else:
+          return False
+      else:
+        return False
+    elif direction == 1:
+      if (0 <= ci < len(self.mapGraph) and 0 <= cj < len(self.mapGraph[0]) ) and (0 <= ci + 1 < len(self.mapGraph) and 0 <= cj < len(self.mapGraph[0]) ):
+        if self.mapGraph[ci][cj] == 0 and self.mapGraph[ci + 1][cj] == 0:
+          return True
+        else:
+          return False
+      else:
+        return False
+    elif direction == 2:
+      if (0 <= ci < len(self.mapGraph) and 0 <= cj < len(self.mapGraph[0]) ) and (0 <= ci < len(self.mapGraph) and 0 <= cj - 1 < len(self.mapGraph[0]) ):
+        if self.mapGraph[ci][cj] == 0 and self.mapGraph[ci][cj - 1] == 0:
+          return True
+        else:
+          return False
+      else:
+        return False
+    elif direction == 3:
+      if (0 <= ci < len(self.mapGraph) and 0 <= cj < len(self.mapGraph[0]) ) and (0 <= ci - 1 < len(self.mapGraph) and 0 <= cj < len(self.mapGraph[0]) ):
+        if self.mapGraph[ci][cj] == 0 and self.mapGraph[ci - 1][cj] == 0:
+          return True
+        else:
+          return False
+      else:
+        return False
+
+
+def bfs(startRobot):
+  queue = deque([startRobot])
+  
+
+board = [[0, 0, 0, 1, 1],[0, 0, 0, 1, 0],[0, 1, 0, 1, 1],[1, 1, 0, 0, 1],[0, 0, 0, 0, 0]]
+print(solution(board))
