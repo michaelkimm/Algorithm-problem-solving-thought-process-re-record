@@ -1,0 +1,40 @@
+import sys
+input = sys.stdin.readline
+
+def array1Dto2D(ary, n, m):
+  result = []
+  for i in range(n):
+    tmp = []
+    for j in range(m):
+      tmp.append(ary[i * m + j])
+    result.append(tmp)
+  return result
+
+def FindMaxGold(mine):
+  # 가로
+  for j in range(len(mine[0])):
+    # 세로
+    for i in range(len(mine)):
+      temp = mine[i][j]
+      # 뒤, 뒤위, 뒤아래 중에 최대로 설정
+      if j - 1 >= 0:
+        temp = mine[i][j - 1] + mine[i][j]
+      if j - 1 >= 0 and i - 1 >= 0:
+        temp = max(mine[i - 1][j - 1] + mine[i][j], temp)
+      if j - 1 >= 0 and i + 1 <= len(mine) - 1:
+        temp = max(mine[i + 1][j - 1] + mine[i][j], temp)
+      mine[i][j] = temp
+  
+  return max(map(max, mine))
+
+T = int(input())
+result = []
+
+for _ in range(T):
+  n, m = map(int, input().split())
+  temp = list(map(int, input().split()))
+  goldMine = array1Dto2D(temp, n, m)
+  result.append(FindMaxGold(goldMine))
+
+print(result)
+
