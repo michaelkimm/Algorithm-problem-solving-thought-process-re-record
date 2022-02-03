@@ -56,3 +56,43 @@ while start <= end:
     end = mid - 1
 
 print(result)
+
+
+
+# Ver2
+
+import sys
+input = sys.stdin.readline
+
+N, C = map(int, input().split())
+housePoseList = [int(input().strip()) for _ in range(N)]
+housePoseList.sort()
+
+def check_installable(ary, deviceCnt, minInterval):
+  deviceRemain = deviceCnt
+  prevInstalledPose = 0
+  for housePose in ary:
+    # 처음 or 현재 위치 - 이전 설치한 것 >= minInterval
+    if housePose == ary[0] or housePose - prevInstalledPose >= minInterval:
+      deviceRemain -= 1
+      prevInstalledPose = housePose
+  
+  return False if deviceRemain > 0 else True
+
+def bisect_best_installable_dist(ary, deviceCnt):
+  start = 0
+  end = ary[len(ary) - 1]
+  result = 1
+
+  while start <= end:
+    mid = (start + end) // 2
+    if check_installable(ary, deviceCnt, mid):
+      result = mid
+      start = mid + 1
+    else:
+      end = mid - 1
+  
+  return result
+
+print(bisect_best_installable_dist(housePoseList, C))
+    
