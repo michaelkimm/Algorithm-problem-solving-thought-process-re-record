@@ -125,3 +125,54 @@ for _ in range(T):
 
 for result in resultList:
   print(result)
+
+
+# =================================================================== #
+# 다익스트라 간결 풀이
+# =================================================================== #
+
+
+  import heapq
+import sys
+input = sys.stdin.readline
+
+INF = int(1e9)
+# 상하좌우
+di = [-1, 1, 0, 0]
+dj = [0, 0, -1 ,1]
+
+resultList = []
+
+for tc in range(int(input())):
+  n = int(input())
+  graph = []
+  for _ in range(n):
+    graph.append(list(map(int, input().split()))) 
+
+  shortDist = [[INF] * n for _ in range(n)]
+
+  i, j = 0, 0
+  shortDist[i][j] = graph[i][j]
+
+  heap = []
+  heapq.heappush(heap, (graph[i][j], i, j))
+
+  while heap:
+    dist, i, j = heapq.heappop(heap)
+    if dist > shortDist[i][j]:
+      continue
+
+    for idx in range(4):
+      ni = i + di[idx]
+      nj = j + dj[idx]
+      if ni < 0 or ni > n - 1 or nj < 0 or nj > n - 1:
+        continue
+      newCost = graph[ni][nj] + dist
+      if newCost < shortDist[ni][nj]:
+        shortDist[ni][nj] = newCost
+        heapq.heappush(heap, (newCost, ni, nj))
+
+  resultList.append(shortDist[n - 1][n - 1])
+    
+for result in resultList:
+  print(result)
