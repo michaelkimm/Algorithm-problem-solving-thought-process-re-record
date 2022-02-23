@@ -64,3 +64,13 @@ def bfs(start, visited, graph):
       if not visited[adjNode]:
         visited[adjNode] = True
         queue.append(adjNode)
+
+        
+def array1Dto2D(ary, n, m):
+  result = []
+  for i in range(n):
+    tmp = []
+    for j in range(m):
+      tmp.append(ary[i * m + j])
+    result.append(tmp)
+  return result
