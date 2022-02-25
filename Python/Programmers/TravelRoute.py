@@ -50,3 +50,28 @@ def solution(tickets):
     # 방문한 곳에서 다른 곳으로 갈 티켓 없는 경우
     # print(sequences)
     return sorted(sequences)[0]
+
+
+
+# ============================================================ #
+from collections import defaultdict
+
+def solution(tickets):
+    ticket_dict = defaultdict(list)
+    for u, v in tickets:
+        ticket_dict[u].append(v)
+        
+    for key in ticket_dict.keys():
+        ticket_dict[key].sort(reverse=True)
+        
+    stack = ["ICN"]
+    path = []
+    
+    while stack:
+        site = stack[-1]
+        if ticket_dict[site] == []:
+            path.append(stack.pop())
+        else:
+            stack.append(ticket_dict[site].pop())
+    
+    return path[::-1]
