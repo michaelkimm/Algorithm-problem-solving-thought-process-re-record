@@ -1,5 +1,3 @@
-from bisect import bisect_left
-
 def solution(n, times):
     left, right = 1, max(times) * n
     answer = 0
