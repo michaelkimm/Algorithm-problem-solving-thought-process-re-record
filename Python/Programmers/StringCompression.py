@@ -27,3 +27,24 @@ def solution(s):
         min_len = min(tmp_len, min_len)
     answer = min_len
     return answer
+
+# =================================================== #
+def my_compress_text(text, unit_len):
+    target_text = text[:unit_len]
+    text_remain = text
+    cnt = 1
+    total_len = len(text)
+    while len(text_remain) > 0:
+        text_remain = text_remain[unit_len:]
+        if target_text == text_remain[:unit_len]:
+            cnt += 1
+        else:
+            if cnt > 1:
+                total_len -= unit_len * (cnt - 1)
+                total_len += len(str(cnt))
+            target_text = text_remain[:unit_len]
+            cnt = 1
+    return total_len
+            
+def solution(s):
+    return min([my_compress_text(s, length) for length in range(1, len(s) + 1)])
