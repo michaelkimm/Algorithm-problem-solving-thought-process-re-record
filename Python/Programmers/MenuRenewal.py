@@ -33,7 +33,6 @@ def solution(orders, course):
     return result
 
 # ====================================================== #
-from collections import defaultdict
 from collections import Counter
 from itertools import combinations
 
