@@ -1,5 +1,6 @@
 from itertools import permutations
 from collections import deque
+import re
 
 def my_operator(a, b, operator):
     if operator == '+':
@@ -11,7 +12,6 @@ def my_operator(a, b, operator):
 
 def solution(expression):
     operators = ['+', '-', '*']
-    operator_prioritys = list(permutations(operators, 3))
     
     expression_q = deque([])
     tmp = ""
@@ -25,7 +25,7 @@ def solution(expression):
     expression_q.append(int(tmp))
   
     result = []
-    for operator_priority in operator_prioritys:
+    for operator_priority in permutations(operators, len(operators)):
         expression_q1 = deque([v for v in expression_q])
         expression_q2 = deque([])
         for operator in operator_priority:
