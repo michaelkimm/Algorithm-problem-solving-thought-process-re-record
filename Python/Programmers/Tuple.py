@@ -28,3 +28,20 @@ def solution(s):
         result.append(diff_num)
     
     return result
+
+
+# ================================================ #
+
+def solution(s):
+    s = s.lstrip('{').rstrip('}').split('},{')
+    s = sorted([v.split(',') for v in s], key = len)
+    
+    answer = []
+    for v_list in s:
+        for v in v_list:
+            if v not in answer:
+                answer.append(v)
+                
+    answer = [int(v) for v in answer]
+    
+    return answer
