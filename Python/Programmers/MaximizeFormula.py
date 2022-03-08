@@ -1,6 +1,5 @@
 from itertools import permutations
 from collections import deque
-import re
 
 def my_operator(a, b, operator):
     if operator == '+':
