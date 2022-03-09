@@ -45,3 +45,14 @@ def solution(s):
     answer = [int(v) for v in answer]
     
     return answer
+
+
+# ============================================= #
+
+import re
+from collections import Counter
+
+def solution(s):
+    num_counts = Counter(re.findall('\d+', s)).most_common()
+    answer = [int(k) for k, v in num_counts]
+    return answer
