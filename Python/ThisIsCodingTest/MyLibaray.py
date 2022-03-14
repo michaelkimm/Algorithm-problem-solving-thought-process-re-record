@@ -32,7 +32,6 @@ def CheckKernelInArray(kernel_, array_, si, sj):
     return False
   elif sj + tetColSize - 1 > len(array_[0]) - 1:
     return False
-  
   return True
 
 def CalculateConv(kernel_, ary_, si, sj):

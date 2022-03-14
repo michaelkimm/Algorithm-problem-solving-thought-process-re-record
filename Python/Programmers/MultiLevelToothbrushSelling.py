@@ -63,4 +63,4 @@ def solution(enroll, referral, seller, amount):
             # 부모 이름 찾기
             parent_name = referral[name_num_dict[seller_name]]
     
-    return answer
+    return answer   
