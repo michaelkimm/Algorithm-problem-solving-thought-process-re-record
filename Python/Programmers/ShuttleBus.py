@@ -29,8 +29,9 @@ def solution(n, t, m, timetable):
     
     timetable.sort()
     min_arridable_time = [calculate_time(min(timetable[0], bus_depart_times[0]), -1)]
-    time_set_list = sorted(set(timetable + bus_depart_times + min_arridable_time))
-    print(time_set_list)
+    timetable_minus_one = [calculate_time(time, -1) for time in timetable]
+    time_set_list = sorted(set(timetable + bus_depart_times + min_arridable_time + timetable_minus_one))
+    #print(time_set_list)
     ridable_times = []
     for idx in range(len(time_set_list)):
         time = time_set_list[idx]
