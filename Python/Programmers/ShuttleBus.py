@@ -26,21 +26,23 @@ def solution(n, t, m, timetable):
     bus_depart_times = [initial_depart_time]
     for i in range(1, n):
         bus_depart_times.append(calculate_time(bus_depart_times[-1], t))
-    
+    # 크루들 정렬
     timetable.sort()
-    min_arridable_time = [calculate_time(min(timetable[0], bus_depart_times[0]), -1)]
+    # 크루 바로 앞에 슬 경우
     timetable_minus_one = [calculate_time(time, -1) for time in timetable]
-    time_set_list = sorted(set(timetable + bus_depart_times + min_arridable_time + timetable_minus_one))
-    #print(time_set_list)
+    # 콘이 서있을 시간 경우의 수
+    time_set_list = sorted(set(timetable + bus_depart_times + timetable_minus_one))
     ridable_times = []
     for idx in range(len(time_set_list)):
         time = time_set_list[idx]
         tmp_times = [t for t in timetable]
+        # 특정 시간의 맨 오른쪽에서 콘은 서있는다
         insert_needed_loc = bisect_right(timetable, time)
         tmp_times.insert(insert_needed_loc, time)
+        # 해당 경우의 수에서 콘이 버스를 탈 수 있나?
         if check_ridable(bus_depart_times, tmp_times, insert_needed_loc, m):
             ridable_times.append(time)
         else:
             break
         
-    return ridable_times[-1] if ridable_times else -1
+    return ridable_times[-1]
