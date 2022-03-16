@@ -95,7 +95,7 @@ def check_pt_on_rect_border(rectangle, x, y):
     bl = (rectangle[0], rectangle[1])
     tr = (rectangle[2], rectangle[3])
     is_in_on_rect = p[0] >= bl[0] and p[0] <= tr[0] and p[1] >= bl[1] and p[1] <= tr[1]
-    is_in_rect = p[0] > bl[0] and p[0] < tr[0] and p[1] > bl[1] and p[1] < tr[1]
+    is_in_rect = check_pt_in_rectangle(rectangle, x, y)
     return is_in_rect == False and is_in_on_rect
 
 def check_pt_in_rectangle(rectangle, x, y):
@@ -105,6 +105,49 @@ def check_pt_in_rectangle(rectangle, x, y):
     return p[0] > bl[0] and p[0] < tr[0] and p[1] > bl[1] and p[1] < tr[1]
 
 from collections import deque
+def solution(rectangle, characterX, characterY, itemX, itemY):
+    # 상하좌우
+    dx = [0, 0, -1, 1]
+    dy = [1, -1, 0 ,0]
+    visited = [[False] * 101 for _ in range(101)]
+    
+    answer = 0
+    rects = []
+    for r in rectangle:
+        rect = [p * 2 for p in r]
+        rects.append(rect)
+        
+    cx = characterX * 2
+    cy = characterY * 2
+    ix = itemX * 2
+    iy = itemY * 2
+    q = deque([(cx, cy, 0)])    # x, y, cost
+    
+    while q:
+        cx, cy, cost = q.popleft()
+        #print(cx, cy, cost)
+        if cx == ix and cy == iy:
+            answer = cost // 2
+            break
+        for idx in range(4):
+            nx = cx + dx[idx]
+            ny = cy + dy[idx]
+            is_on_rectangle = check_movable_pt(rects, nx, ny)
+            if 2 <= nx <= 100 and 2 <= ny <= 100 and not visited[ny][nx] and is_on_rectangle:
+                q.append((nx, ny, cost + 1))
+                visited[ny][nx] = True
+    return answer
+
+
+# ======================================================== #
+
+from collections import deque
+
+def check_movable_pt(rectangles, x, y):
+    on_any_rectangle = any((x in (x1, x2) and y1 <= y <= y2) or (y in (y1, y2) and x1 <= x <= x2) for x1, y1, x2, y2 in rectangles)
+    in_any_rectangle = any(x > x1 and x < x2 and y > y1 and y < y2 for x1, y1, x2, y2 in rectangles)
+    return (not in_any_rectangle) and on_any_rectangle
+
 def solution(rectangle, characterX, characterY, itemX, itemY):
     # 상하좌우
     dx = [0, 0, -1, 1]
