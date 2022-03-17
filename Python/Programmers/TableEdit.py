@@ -10,10 +10,6 @@ def solution(n, k, cmd):
     stack = []
     cur_location = k
     for c in cmd:
-        #print(cur_location)
-        #print(c)
-        #print("")
-        #print("")
         if len(c) >= 2:
             # U, D
             cmd_type, num = c.split()
