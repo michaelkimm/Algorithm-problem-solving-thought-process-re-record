@@ -1,0 +1,298 @@
+[33mcommit d79e7ad46a95fd898a35abac9f3695bed23d1df9[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Mon May 23 10:13:01 2022 +0900
+
+    Create WordChainGame.py
+    
+    알고리즘: 구현
+    자료구조: set
+
+[33mcommit 97d68389c612614999c4b29c5a7b98cd5e6662c0[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Tue Mar 22 21:35:33 2022 +0900
+
+    Create BridgePassingTruck.py
+    
+    알고리즘: 구현
+    자료구조: 큐, 스택
+
+[33mcommit 2ae794ad266397f20fe2c6ca30a2dc920fd0213d[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Mon Mar 21 21:38:10 2022 +0900
+
+    Update 2xNTiling.py
+    
+    알고리즘: 피보나치 수열
+    자료구조: 배열
+
+[33mcommit d6a9465852fc30c7c05031154ec233a6b06a19ff[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Mon Mar 21 21:37:29 2022 +0900
+
+    Create 2xNTiling.py
+    
+    알고리즘: 피보나치 수열
+    자료구조: 변수
+
+[33mcommit bc7655ccaa84f4d204bf3f11797524c4137db3e8[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Mon Mar 21 21:36:43 2022 +0900
+
+    Revert "Create 2xNTiling.py"
+    
+    This reverts commit df13817fb990657cf2128797e710897c617b2679.
+
+[33mcommit df13817fb990657cf2128797e710897c617b2679[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Mon Mar 21 21:34:04 2022 +0900
+
+    Create 2xNTiling.py
+
+[33mcommit b36b2bc0a59087d168117a832abcf03cde2e0ab3[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Mon Mar 21 21:08:51 2022 +0900
+
+    Update Delivery.py
+    
+    알고리즘: 다익스트라
+    자료구조: 그래프
+
+[33mcommit 9ad46d84f7f893b0149982914dce2bc63ca5e73c[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Mon Mar 21 20:59:08 2022 +0900
+
+    Create Delivery.py
+    
+    알고리즘: dp, 최단경로
+    자료구조: 배열
+
+[33mcommit d55ccdf9cbfa08f99c84946662bc369a8383b232[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Sun Mar 20 15:00:49 2022 +0900
+
+    Create BadUser.py
+
+[33mcommit 0af173df4ff1208afd00b80ca2ad16e2316792a6[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Sat Mar 19 18:26:53 2022 +0900
+
+    Create SKCodingTestProb2.py
+
+[33mcommit 3e5d3c4968676626b98c376de544046f5df85022[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Sat Mar 19 14:09:01 2022 +0900
+
+    Create SKCodingTest1.py
+
+[33mcommit be52904d0190b3d2336c4c7187776d6a64e6897c[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Fri Mar 18 15:56:12 2022 +0900
+
+    Create GemShopping.py
+
+[33mcommit aa14e38b823c8234168c2e3387b2b68b10e5b863[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Thu Mar 17 14:50:36 2022 +0900
+
+    Update TableEdit.py
+
+[33mcommit 5be401d320282052407969d7262dba7195b84daf[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Thu Mar 17 12:15:43 2022 +0900
+
+    Create TableEdit.py
+
+[33mcommit cd819112a0089fe554ae9db0263a64f01f949eec[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Wed Mar 16 16:22:51 2022 +0900
+
+    Update ShuttleBus.py
+
+[33mcommit be979bc412b3a7668056efa50384cf124b1db748[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Wed Mar 16 14:57:00 2022 +0900
+
+    Update ItemGet.py
+
+[33mcommit 3542b4164757084a67cfb0b475ce2a30914c75fb[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Wed Mar 16 12:52:32 2022 +0900
+
+    Update ItemGet.py
+
+[33mcommit ae4eaa662afcc260d2aa83ad9defb9bd417be5de[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Tue Mar 15 21:38:14 2022 +0900
+
+    Create ItemGet.py
+
+[33mcommit c36341aab464cc64ef9f9b664ba68d790c540507[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Tue Mar 15 19:27:27 2022 +0900
+
+    Create FatigueDegree.py
+    
+    Proggrammers/Coding Test Pracetice/Weekly Challenge/Fatigue Degree
+    1. 브루트포스
+
+[33mcommit c094e3e69a14e2e19735266640708c852dc8978c[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Tue Mar 15 00:02:25 2022 +0900
+
+    Update ShuttleBus.py
+
+[33mcommit f284cf0994fe77150ac2f2cdc1f7a55828fc0bfa[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Mon Mar 14 23:51:50 2022 +0900
+
+    Update ShuttleBus.py
+
+[33mcommit 36eb3499bd2df841745405f5ac5c259a99c07741[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Mon Mar 14 21:59:19 2022 +0900
+
+    Programmers 문제 풀이
+    
+    1. Shuttle bus
+
+[33mcommit 68d68934727ffeea16b62733d526605a71fe88d5[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Sun Mar 13 18:32:15 2022 +0900
+
+    Create ParenthesisRotation.py
+
+[33mcommit 29332698234739685bb3e55ed61181c4576e4c9d[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Sun Mar 13 18:06:25 2022 +0900
+
+    Update MultiLevelToothbrushSelling.py
+
+[33mcommit b912fd75ce11ec9830f6b57c84b63cb239d8375e[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Sun Mar 13 17:59:02 2022 +0900
+
+    Create MultiLevelToothbrushSelling.py
+
+[33mcommit bd0f78ceb84f721eeb29abf26ee18ec812b0de04[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Sat Mar 12 16:32:06 2022 +0900
+
+    Create SKTProb_SPIN.py
+
+[33mcommit ea8654b001f57f201cc678e5c4a2c7a19fd86db7[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Fri Mar 11 14:17:57 2022 +0900
+
+    Update CandidateKey.py
+
+[33mcommit b2c06574a2db837c3221bd40d97de545e21f7742[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Fri Mar 11 14:04:33 2022 +0900
+
+    Create CandidateKey.py
+
+[33mcommit 395047697efb2b553dbebfab24da5c63f1d613f4[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Fri Mar 11 11:29:35 2022 +0900
+
+    Create RankSearch.py
+
+[33mcommit 220662bf98fc0c6fdfa8f4324172b31f9b3aa451[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Thu Mar 10 10:40:08 2022 +0900
+
+    Update AnticipatedMatch.py
+
+[33mcommit 72e283aa4e6de9c44576d65431a85f8e4bef29b6[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Thu Mar 10 10:38:13 2022 +0900
+
+    Create AnticipatedMatch.py
+
+[33mcommit 3ebb83b9a2443a66b718eb46a957cfa693fe8771[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Wed Mar 9 12:34:37 2022 +0900
+
+    Update Tuple.py
+
+[33mcommit d9d45269799b97e202383fe88f3ab5c01cf62695[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Wed Mar 9 12:23:35 2022 +0900
+
+    Create GameMapShortestPath.py
+
+[33mcommit 2961ca8960ba715503021a7c806f16dedb0a2852[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Wed Mar 9 11:52:04 2022 +0900
+
+    Create LightRouteCycle.py
+
+[33mcommit 72e6d8a79e5866e32d5e18fb1426c35ffd048cd4[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Tue Mar 8 21:31:41 2022 +0900
+
+    Update Tuple.py
+
+[33mcommit 266902a63a6bb55d70e5f828de119dd51416bc5b[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Tue Mar 8 21:21:46 2022 +0900
+
+    Create Tuple.py
+
+[33mcommit c1341d1faee2999423ba1ea9a801df547892be95[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Tue Mar 8 20:44:35 2022 +0900
+
+    Update MaximizeFormula.py
+
+[33mcommit cc6b52aebb93c07eb070d2d161885fc15c595560[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Tue Mar 8 20:44:15 2022 +0900
+
+    Update MaximizeFormula.py
+
+[33mcommit 3922dd0f545eb06e32d25da684932f5afebdcae5[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Tue Mar 8 20:38:49 2022 +0900
+
+    Create MaximizeFormula.py
+
+[33mcommit 62ef9f07afe12e6488e3666bf64bea8ba78cf1d2[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Mon Mar 7 16:19:23 2022 +0900
+
+    Create CheckingTheDistance.py
+
+[33mcommit f40f96d5079d17e6dc739ca0c95d27732893ce4f[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Mon Mar 7 12:58:32 2022 +0900
+
+    Create News1thClustering.py
+
+[33mcommit 6ff3dde8e91194d8ef6b39ead156538146cced0c[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Sun Mar 6 14:20:45 2022 +0900
+
+    Update MenuRenewal.py
+
+[33mcommit fb4b7e8f9df2ce54d14d1d3f55f2fb58825e4c4a[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Sun Mar 6 13:16:37 2022 +0900
+
+    Update MenuRenewal.py
+
+[33mcommit af839f1f73aa4711ce50980778fd20f39cf84518[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Sun Mar 6 12:44:32 2022 +0900
+
+    Create MenuRenewal.py
+
+[33mcommit 4eb4bc8f28a076e650f4c39345216ec5852102b4[m
+Author: michael <mskim_451@dongguk.edu>
+Date:   Sat Mar 5 22:01:18 2022 +0900
+
+    Update MatrixBorderRotate.py
+
+[33mcommit 39e254f5fc52e5efac6680fb6fbe0e21b2b978f0[m
+Author: michael <mskim_451@dongguk.edu>
+Date:
