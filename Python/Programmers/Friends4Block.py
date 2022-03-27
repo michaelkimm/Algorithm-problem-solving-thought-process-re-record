@@ -93,3 +93,52 @@ def solution(m, n, board):
             # 블록 아래로 떨어져 빈 공간 채우기
             block_fall(m, n, board_list)
     return deleted_cnt
+
+
+# ================================================== #
+
+from collections import deque
+
+def block_fall(m, n, board_list):
+    for j in range(n):
+        l = deque()
+        for i in range(m - 1, -1, -1):
+            # 빈칸이 아니면 큐에 모두 담는다
+            if board_list[i][j] != "-":
+                l.append(board_list[i][j])
+        # 큐가 존재하면 빼서 담고 아니면 빈칸으로 만듬
+        for i in range(m - 1, -1, -1):
+            board_list[i][j] = l.popleft() if l else "-"
+    return
+
+def rotate_for_deletion(m, n, board_list):
+    deleted_cnt = 0
+    delete_reserved = []
+    for i in range(m):
+        for j in range(n):
+            if i + 1 >= m or j + 1 >= n:
+                continue
+            if (board_list[i][j] == board_list[i + 1][j] and
+                board_list[i][j] == board_list[i][j + 1] and
+                board_list[i][j] == board_list[i + 1][j + 1]):
+                delete_reserved += [(i, j), (i + 1, j), (i, j + 1), (i + 1, j + 1)]
+    for i, j in delete_reserved:
+        if board_list[i][j] != '-':
+            board_list[i][j] = '-'
+            deleted_cnt += 1
+    
+    return deleted_cnt
+
+def solution(m, n, board):
+    deleted_cnt = 0
+    board_list = [list(line) for line in board]
+    new_deletion_cnt = -1
+    
+    while new_deletion_cnt != 0:
+        new_deletion_cnt = rotate_for_deletion(m, n, board_list)
+        if new_deletion_cnt != 0:
+            # 삭제 갯수 업데이트
+            deleted_cnt += new_deletion_cnt
+            # 블록 아래로 떨어져 빈 공간 채우기
+            block_fall(m, n, board_list)
+    return deleted_cnt
