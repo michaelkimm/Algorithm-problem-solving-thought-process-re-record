@@ -55,6 +55,9 @@ def solution(n):
 # 경계 조건 처리
 
 def solution(n):
+    if n == 1:
+        return [1]
+    
     houses = [[0] * i for i in range(1, n + 1)]
     # 진행 방향 / 하, 우, 상
     direction = [0, 1, 2]
@@ -80,7 +83,7 @@ def solution(n):
                 r_idx = d_idx
         # 우측 갈 때 / 다음 row가 0이 아닐 때 까지
         if cur_dir == 1:
-            if not (0 <= r_idx < len(houses[cur_row])) or houses[cur_row][r_idx] != 0:
+            if houses[cur_row][r_idx] != 0:
                 break
             houses[cur_row][r_idx] = num
             num += 1
@@ -107,3 +110,5 @@ def solution(n):
     for line in houses:
         answer += line
     return answer
+
+
