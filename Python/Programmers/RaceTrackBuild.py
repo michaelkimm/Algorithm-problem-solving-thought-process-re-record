@@ -134,3 +134,42 @@ def solution(board):
                 
     answer = min(distance[-1][-1])
     return answer
+
+
+# ================================================= #
+
+from collections import deque
+
+def solution(board):
+    n = len(board)
+    INF = int(1e6)
+    s_cost = 100
+    t_cost = 500
+    
+    # 동서남북
+    di = [0, 0, 1, -1]
+    dj = [-1, 1, 0, 0]
+    dirs = [0, 1, 2, 3]
+    
+    distance = [[[INF] * 4 for _ in range(n)] for _ in range(n)]
+    for i in range(4):
+        distance[0][0][i] = 0
+    q = deque([(0, 0, 1, 0), (0, 0, 2, 0)])
+    
+    while q:
+        ci, cj, cdir, cur_cost = q.popleft()
+        if ci == n - 1 and cj == n - 1:
+            continue
+        for ndir in range(4):
+            ni = ci + di[ndir]
+            nj = cj + dj[ndir]
+            if not(0 <= ni <= n - 1 and 0 <= nj <= n - 1):
+                continue
+            if board[ni][nj] == 1:
+                continue
+            new_cost = cur_cost + s_cost if ndir == cdir else cur_cost + s_cost + t_cost
+            if distance[ni][nj][ndir] > new_cost:
+                q.append((ni, nj, ndir, new_cost))
+                distance[ni][nj][ndir] = new_cost
+                
+    return min(distance[-1][-1])
