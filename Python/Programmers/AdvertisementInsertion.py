@@ -94,3 +94,43 @@ def solution(play_time, adv_time, logs):
             answer_start = target_start
     
     return get_log_from_sec(answer_start)
+
+
+
+# ============================================================= #
+
+def get_sec_from_log(log):
+    tmp_log = log.split(':')
+    sec =  int(tmp_log[0]) * 3600 + int(tmp_log[1]) * 60 + int(tmp_log[2])
+    return sec
+
+def solution(play_time, adv_time, logs):
+    play_time_sec = get_sec_from_log(play_time)
+    adv_time_sec = get_sec_from_log(adv_time)
+    dp = [0] * (play_time_sec + 1)
+    for log in logs:
+        start_log, end_log = log.split('-')
+        start_time = get_sec_from_log(start_log)
+        end_time = get_sec_from_log(end_log)
+        dp[start_time] += 1
+        dp[end_time] -= 1
+        
+    for i in range(1, len(dp)):
+        # 현재 구간 시청자 수
+        dp[i] = dp[i] + dp[i - 1]
+    for i in range(1, len(dp)):
+        # 누적 시청자 수
+        dp[i] = dp[i] + dp[i - 1]
+    
+    max_played = 0
+    min_time = play_time_sec - adv_time_sec
+    for t in range(adv_time_sec - 1, play_time_sec):
+        if t >= adv_time_sec:
+            if dp[t] - dp[t - adv_time_sec] > max_played:
+                max_played = dp[t] - dp[t - adv_time_sec]
+                min_time = t - adv_time_sec + 1
+        else:
+            max_played = dp[adv_time_sec - 1]
+            min_time = 0
+    
+    return get_log_from_sec(min_time)
