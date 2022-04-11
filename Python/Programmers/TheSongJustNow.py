@@ -38,3 +38,35 @@ def solution(m, musicinfos):
         candidates.sort(key=lambda x:(-x[0], x[1]))
         answer = candidates[0][2]
     return answer
+
+
+
+
+# ============================================ #
+
+def time_str_to_min(time):
+    hr, m = time.split(':')
+    return int(hr) * 60 + int(m)
+
+def sharp_to_lower_case(notes):
+    return notes.replace('C#', 'c').replace('A#', 'a').replace('D#', 'd').replace('F#', 'f').replace('G#', 'g')
+
+def solution(m, musicinfos):
+    m = sharp_to_lower_case(m)
+    candidates = []
+    for idx, music_info in enumerate(musicinfos):
+        start_time, end_time, title, content = music_info.split(',')
+        start_time = time_str_to_min(start_time)
+        end_time = time_str_to_min(end_time)
+        content = sharp_to_lower_case(content)
+        content_unit = content
+        while (end_time - start_time) > len(content):
+            content += content_unit
+        content = content[:end_time - start_time]   
+        if m in content:
+            candidates.append((end_time - start_time, idx, title))
+    answer = "(None)"
+    if candidates:
+        candidates.sort(key=lambda x:(-x[0], x[1]))
+        answer = candidates[0][2]
+    return answer
