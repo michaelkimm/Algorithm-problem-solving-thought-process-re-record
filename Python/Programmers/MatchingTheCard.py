@@ -285,3 +285,68 @@ def solution(board, r, c):
             si, sj = card2_i, card2_j
         min_key_control_cnt = min(min_key_control_cnt, key_control_cnt)
     return min_key_control_cnt
+
+
+
+
+
+
+# ============================================ #
+
+from collections import deque
+
+def move_in(val):
+    if val < 0:
+        return 0
+    elif val > 3:
+        return 3
+    else:
+        return val
+
+def ctrl_move(bd, ci, cj, di, dj):
+    ni, nj = 0, 0
+    for k in range(1, 4):
+        ni = move_in(ci + di * k)
+        nj = move_in(cj + dj * k)
+        if bd[ni * 4 + nj] != '0':
+            return ni, nj
+    return ni, nj
+
+def solution(board, r, c):
+    answer = 0
+    bd = ''.join([str(board[row][col]) for row in range(4) for col in range(4)])
+    cost = 0
+    # 음수면 엔터를 안쳤음. 양수면 엔터를 친 위치
+    enter = -1
+    q = deque([(bd, r, c, cost, enter)])
+    visited = set()
+    while q:
+        bd, ci, cj, cost, enter = q.popleft()
+        if bd.count('0') == 16:
+            answer = cost
+            break
+        
+        if (bd, ci, cj, enter) in visited:
+            continue
+            
+        visited.add((bd, ci, cj, enter))
+        
+        position = ci * 4 + cj
+        if bd[position] != '0':
+            if enter == -1:
+                # 엔터를 안쳤었음.
+                q.append((bd, ci, cj, cost + 1, position))
+            elif enter != position and bd[enter] == bd[position]:
+                # 엔터를 쳤었고 짝을 만난 경우
+                q.append((bd.replace(bd[position], '0'), ci, cj, cost + 1, -1))
+        
+        # 상하좌우
+        for di, dj in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+            ni, nj = ci + di, cj + dj
+            if 0 <= ni < 4 and 0 <= nj < 4:
+                q.append((bd, ni, nj, cost + 1, enter))
+            ni, nj = ctrl_move(bd, ci, cj, di, dj)
+            if ni == ci and nj == cj:
+                continue
+            q.append((bd, ni, nj, cost + 1, enter))
+    return answer
