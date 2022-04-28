@@ -22,23 +22,31 @@ def Turn2DArrayCWs(ary, rotateCnt):
     return result
 
 def truncate_array(ary, r1, c1, r2, c2):
+    # print(r1, c1, r2, c2)
     result = [ary[i][j] for i in range(r1, r2 + 1) for j in range(c1, c2 + 1)]
     return result
 
-def check(key, r1, c1, r2, c2, lock, r3, c3, zero_cnt):
-    print(r1,c1,r2,c2)
-    truncated_key = truncate_array(key, r1, c1, r2, c2)
-    truncated_lock = truncate_array(lock, r3, c3, r3 + (r2 - r1), c3 + (c2 - c1))
+def check(key, lock, zero_cnt):
     result = True
     cnt = 0
-    for i in range(len(truncated_key)):
-        if truncated_key[i] == 1 and truncated_lock[i] == 0:
-            cnt += 1
-        elif truncated_key[i] == truncated_lock[i]:
-            result = False
-            break
+    for i in range(len(key)):
+        for j in range(len(key)):
+            if key[i][j] == 1 and lock[i][j] == -1:
+                cnt += 1
+            elif key[i][j] == 1 and lock[i][j] == 1:
+                return False
     if zero_cnt != cnt:
         result = False
+    return result
+
+def getExpandedArray(data, ci, cj, n, m, islock):
+    result = [[0] * (2 * m + n) for _ in range(2 * m + n)]
+    for i in range(m):
+        for j in range(m):
+            if not islock:
+                result[i + ci][j + cj] = data[i][j]
+            else:
+                result[i + ci][j + cj] = data[i][j] if data[i][j] == 1 else -1
     return result
 
 def solution(key, lock):
@@ -49,44 +57,20 @@ def solution(key, lock):
         for j in range(n):
             if lock[i][j] == 0:
                 zero_cnt += 1
+    key[2][0] = 1
     keys = get4turnedAry(key)
-    target_key = [[0, 1, 0], [1, 0, 0], [1, 0, 0]]
-    # 위 -> 중간
-    for i in range(1, n + 1):
-        # 좌 끝-> 중간 전
-        for j in range(1, n + 1):
+    expandedLock = getExpandedArray(lock, m, m, n, m, True)
+    expandedKey = getExpandedArray(keys[1], m + 1, m + 1, n, m, False)
+    print(check(expandedKey, expandedLock, zero_cnt))
+    for line in expandedLock:
+        print(line)
+    print("---")
+    for line in expandedKey:
+        print(line)
+    for i in range(n + m):
+        for j in range(n + m):
             for k in keys:
-                print(1)
-                r1 = m - i if m - i >= 0 else 0
-                r2 = m - j if m - j >= 0 else 0
-                if check(k, r1, r2, m - 1, m - 1, lock, 0, 0, zero_cnt):
+                expandedKey = getExpandedArray(k, i, j, n, m, False)
+                if check(expandedKey, expandedLock, zero_cnt):
                     return True
-        # 중간 -> 우 끝
-        for j in range(1, n + 1):
-            for k in keys:
-                print(2)
-                r1 = m - i if m - i >= 0 else 0
-                c2 = m - j if m - j >= 0 else 0
-                if check(k, r1, m - m, m - 1, c2, lock, 0, j - 1, zero_cnt):
-                    return True
-    
-    # 중간 -> 아래
-    for i in range(1, n + 1):
-        # 좌 끝-> 중간 전
-        for j in range(1, n + 1):
-            for k in keys:
-                print(3)
-                c1 = m - j if m - j >= 0 else 0
-                r2 = i - 1 if i - 1 < m else m - 1
-                if check(k, 0, c1, r2, m - 1, lock, n - i, 0, zero_cnt):
-                    return True
-        # 중간 -> 우 끝
-        for j in range(1, n + 1):
-            for k in keys:
-                r2 = i - 1 if i - 1 < m else m - 1
-                c2 = m - j if m - j >= 0 else 0
-                print(4)
-                if check(k, 0, 0, r2, c2, lock, n - i, j - 1, zero_cnt):
-                    return True
-    
     return False
