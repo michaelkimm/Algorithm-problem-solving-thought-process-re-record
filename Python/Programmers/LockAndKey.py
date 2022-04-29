@@ -21,11 +21,6 @@ def Turn2DArrayCWs(ary, rotateCnt):
         result = Turn2DArrayCW(result)
     return result
 
-def truncate_array(ary, r1, c1, r2, c2):
-    # print(r1, c1, r2, c2)
-    result = [ary[i][j] for i in range(r1, r2 + 1) for j in range(c1, c2 + 1)]
-    return result
-
 def check(key, lock, zero_cnt):
     result = True
     cnt = 0
@@ -41,12 +36,15 @@ def check(key, lock, zero_cnt):
 
 def getExpandedArray(data, ci, cj, n, m, islock):
     result = [[0] * (2 * m + n) for _ in range(2 * m + n)]
-    for i in range(m):
-        for j in range(m):
-            if not islock:
-                result[i + ci][j + cj] = data[i][j]
-            else:
+    if islock:
+        for i in range(n):
+            for j in range(n):
                 result[i + ci][j + cj] = data[i][j] if data[i][j] == 1 else -1
+    else:
+        for i in range(m):
+            for j in range(m):
+                result[i + ci][j + cj] = data[i][j]
+                
     return result
 
 def solution(key, lock):
@@ -57,16 +55,8 @@ def solution(key, lock):
         for j in range(n):
             if lock[i][j] == 0:
                 zero_cnt += 1
-    key[2][0] = 1
     keys = get4turnedAry(key)
     expandedLock = getExpandedArray(lock, m, m, n, m, True)
-    expandedKey = getExpandedArray(keys[1], m + 1, m + 1, n, m, False)
-    print(check(expandedKey, expandedLock, zero_cnt))
-    for line in expandedLock:
-        print(line)
-    print("---")
-    for line in expandedKey:
-        print(line)
     for i in range(n + m):
         for j in range(n + m):
             for k in keys:
