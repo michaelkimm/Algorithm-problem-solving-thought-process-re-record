@@ -64,3 +64,40 @@ def solution(key, lock):
                 if check(expandedKey, expandedLock, zero_cnt):
                     return True
     return False
+
+
+# ================================================================= #
+def getTargetIndexes(ary, target):
+    return [(i, j) for i in range(len(ary)) for j in range(len(ary)) if ary[i][j] == target]
+
+def getRotatedIndexes(ary, m):
+    return [(j, m - i - 1) for i, j in ary]
+
+def solution(key, lock):
+    n = len(lock)
+    m = len(key)
+    lock_hole = getTargetIndexes(lock, 0)
+    key0_hole = getTargetIndexes(key, 1)
+    key90_hole = getRotatedIndexes(key0_hole, m)
+    key180_hole = getRotatedIndexes(key90_hole, m)
+    key270_hole = getRotatedIndexes(key180_hole, m)
+    
+    for key in [key0_hole, key90_hole, key180_hole, key270_hole]:
+        # key = [(1, 2), (2, 3), (3, 2)]
+        for i in range(-1 * m + 1, n + m):
+            for j in range(-1 * m + 1, n + m):
+                cnt = 0
+                for block in key:
+                    # block = (1, 2)
+                    moved_block_i = block[0] + i
+                    moved_block_j = block[1] + j
+                    if not (0 <= moved_block_i < n and 0 <= moved_block_j < n):
+                        continue
+                    if lock[moved_block_i][moved_block_j] == 1:
+                        cnt = -1
+                        break
+                    if lock[moved_block_i][moved_block_j] == 0:
+                        cnt += 1
+                if cnt == len(lock_hole):
+                    return True
+    return False
