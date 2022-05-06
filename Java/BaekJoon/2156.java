@@ -32,3 +32,39 @@ class Main {
     
   }
 }
+
+
+// -------------------------------------------------------------------------------------- //
+
+import java.io.*;
+import java.util.Arrays;
+
+class Main {
+  public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int n = Integer.parseInt(br.readLine().strip());
+    int [] wines = new int[n + 1];
+    int[] dp = new int[n + 1];
+    for (int i = 1; i < n + 1; i++){
+      wines[i] = Integer.parseInt(br.readLine().strip());
+    }
+
+    dp[1] = wines[1];
+    if (n != 1)
+      dp[2] = wines[1] + wines[2];
+    
+    for (int i = 3; i < n + 1; i++){
+      // 날 안고르는게 나은 경우
+      dp[i] = dp[i - 1];
+
+      // 바로 이전 안고른 경우
+      if (dp[i - 2] + wines[i] > dp[i])
+        dp[i] = dp[i - 2] + wines[i];
+      
+      // 이전 고른 경우
+      if (dp[i - 3] + wines[i - 1] + wines[i] > dp[i])
+        dp[i] = dp[i - 3] + wines[i - 1] + wines[i];
+    }
+    System.out.println(Arrays.stream(dp).max().getAsInt());
+  }
+}
