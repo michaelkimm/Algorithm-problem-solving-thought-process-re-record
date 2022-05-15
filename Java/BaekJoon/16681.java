@@ -3,28 +3,12 @@ import java.util.*;
 
 class Main {
     static class Node implements Comparable<Node> {
-        private int id;
-        private long distance;
+        int id;
+        long distance;
 
         public Node(int id, long distance) {
             this.id = id;
             this.distance = distance;
-        }
-
-        public void setId(int id) {
-            this.id = id;
-        }
-
-        public void setDistance(long distance) {
-            this.distance = distance;
-        }
-
-        public int getId() {
-            return id;
-        }
-
-        public long getDistance() {
-            return distance;
         }
 
         @Override
@@ -42,7 +26,7 @@ class Main {
     static long D;
     static long E;
     static long[] heights;
-    static ArrayList<ArrayList<Node>> graph = new ArrayList<ArrayList<Node>>();
+    static ArrayList<Node>[] graph;
     static long INF = Long.MAX_VALUE;
 
     public static void main(String[] args) throws IOException{
@@ -56,11 +40,11 @@ class Main {
         // heights
         st = new StringTokenizer(br.readLine());
         heights = new long[N + 1];
+        graph = new ArrayList[N];
         for (int i = 1; i < N + 1; i++) {
             heights[i] = Long.parseLong(st.nextToken());
-            graph.add(new ArrayList<Node>());
+            graph[i] = new ArrayList<Node>();
         }
-        graph.add(new ArrayList<Node>());
 
         // lines
         for (int i = 0; i < M; i++) {
@@ -68,8 +52,8 @@ class Main {
             int u = Integer.parseInt(st.nextToken());
             int v = Integer.parseInt(st.nextToken());
             long c = Long.parseLong(st.nextToken());
-            graph.get(u).add(new Node(v, c));
-            graph.get(v).add(new Node(u, c));
+            graph[u].add(new Node(v, c));
+            graph[v].add(new Node(u, c));
         }
 
         // get cost
@@ -105,7 +89,7 @@ class Main {
                 break;
             }
 
-            for (Node nextNode : graph.get(curNode.getId())) {
+            for (Node nextNode : graph[curNode.getId()]) {
                 // if next node height is lower
                 if (heights[curNode.getId()] >= heights[nextNode.getId()])
                     continue;
