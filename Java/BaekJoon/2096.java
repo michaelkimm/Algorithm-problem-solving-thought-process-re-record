@@ -3,42 +3,64 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 class Main {
-  public static void printAry(int[][] ary){
-    for (int i = 0; i < ary.length; i++){
-      System.out.printf("%d, %d\n", ary[i][0], ary[i][1]);
-    }
-    System.out.println("");
-  }
-  
+
+  static int[][] minLines;
+  static int[][] maxLines;
+
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     int N = Integer.parseInt(br.readLine().strip());
-    int[][] reservations = new int[N][2];
-    for (int i = 0; i < N; i++){
+    minLines = new int[N][3];
+    maxLines = new int[N][3];
+
+    for (int i = 0; i < N; i++) {
       String[] line = br.readLine().split(" ");
-      reservations[i][0] = Integer.parseInt(line[0]);
-      reservations[i][1] = Integer.parseInt(line[1]);
+      int left = Integer.parseInt(line[0]);
+      int middle = Integer.parseInt(line[1]);
+      int right = Integer.parseInt(line[2]);
+      maxLines[i][0] = left;
+      maxLines[i][1] = middle;
+      maxLines[i][2] = right;
+
+      minLines[i][0] = left;
+      minLines[i][1] = middle;
+      minLines[i][2] = right;
     }
-    Arrays.sort(reservations, new Comparator<int[]>() {
-      @Override
-      public int compare(int[] o1, int[] o2){
-        if (o1[1] == o2[1])
-          return o1[0] - o2[0];
-        else
-          return o1[1] - o2[1];
-      }
-    });
-    // printAry(reservations);
-    int cur_start_time = 0;
-    int cur_end_time = 0;
-    int answer = 0;
-    for (int i = 0; i < N; i++){
-      if (reservations[i][0] >= cur_end_time){
-        cur_start_time = reservations[i][0];
-        cur_end_time = reservations[i][1];
-        answer += 1;
-      }
+
+    // max
+    for (int i = 1; i < N; i++) {
+      // decide left
+      maxLines[i][0] = maxLines[i][0] + Math.max(maxLines[i - 1][0], maxLines[i - 1][1]);
+
+      // decide right
+      maxLines[i][2] = maxLines[i][2] + Math.max(maxLines[i - 1][1], maxLines[i - 1][2]);
+
+      // decide mid
+      maxLines[i][1] = maxLines[i][1] + Math.max(Math.max(maxLines[i - 1][0], maxLines[i - 1][1]), maxLines[i - 1][2]);
     }
-    System.out.println(answer);
+
+    // min
+    for (int i = 1; i < N; i++) {
+      // decide left
+      minLines[i][0] = minLines[i][0] + Math.min(minLines[i - 1][0], minLines[i - 1][1]);
+
+      // decide right
+      minLines[i][2] = minLines[i][2] + Math.min(minLines[i - 1][1], minLines[i - 1][2]);
+
+      // decide mid
+      minLines[i][1] = minLines[i][1] + Math.min(Math.min(minLines[i - 1][0], minLines[i - 1][1]), minLines[i - 1][2]);
+    }
+
+    System.out.println(Arrays.stream(maxLines[N - 1]).max().getAsInt() + " " + Arrays.stream(minLines[N - 1]).min().getAsInt());
+  }
+
+  static void printAry(int[][] ary) {
+    for (int[] ints : ary) {
+      for (int v : ints) {
+        System.out.print(v + " ");
+      }
+      System.out.println();
+    }
+    System.out.println();
   }
 }
