@@ -1,6 +1,9 @@
 import java.io.*;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.function.BinaryOperator;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 class Main {
 
@@ -27,40 +30,24 @@ class Main {
       minLines[i][2] = right;
     }
 
-    // max
-    for (int i = 1; i < N; i++) {
-      // decide left
-      maxLines[i][0] = maxLines[i][0] + Math.max(maxLines[i - 1][0], maxLines[i - 1][1]);
-
-      // decide right
-      maxLines[i][2] = maxLines[i][2] + Math.max(maxLines[i - 1][1], maxLines[i - 1][2]);
-
-      // decide mid
-      maxLines[i][1] = maxLines[i][1] + Math.max(Math.max(maxLines[i - 1][0], maxLines[i - 1][1]), maxLines[i - 1][2]);
-    }
-
-    // min
-    for (int i = 1; i < N; i++) {
-      // decide left
-      minLines[i][0] = minLines[i][0] + Math.min(minLines[i - 1][0], minLines[i - 1][1]);
-
-      // decide right
-      minLines[i][2] = minLines[i][2] + Math.min(minLines[i - 1][1], minLines[i - 1][2]);
-
-      // decide mid
-      minLines[i][1] = minLines[i][1] + Math.min(Math.min(minLines[i - 1][0], minLines[i - 1][1]), minLines[i - 1][2]);
-    }
+    BinaryOperator<Integer> minOperator = (a, b) -> a < b ? a : b;
+    BinaryOperator<Integer> maxOperator = (a, b) -> a > b ? a : b;
+    process(minLines, minOperator);
+    process(maxLines, maxOperator);
 
     System.out.println(Arrays.stream(maxLines[N - 1]).max().getAsInt() + " " + Arrays.stream(minLines[N - 1]).min().getAsInt());
   }
 
-  static void printAry(int[][] ary) {
-    for (int[] ints : ary) {
-      for (int v : ints) {
-        System.out.print(v + " ");
-      }
-      System.out.println();
+  public static void process(int[][] lines, BinaryOperator<Integer> myOperator) {
+    for (int i = 1; i < lines.length; i++) {
+      // decide left
+      lines[i][0] = lines[i][0] + myOperator.apply(lines[i - 1][0], lines[i - 1][1]);
+      Stream
+      // decide right
+      lines[i][2] = lines[i][2] + myOperator.apply(lines[i - 1][1], lines[i - 1][2]);
+
+      // decide mid
+      lines[i][1] = lines[i][1] + myOperator.apply(myOperator.apply(lines[i - 1][0], lines[i - 1][1]), lines[i - 1][2]);
     }
-    System.out.println();
   }
 }
