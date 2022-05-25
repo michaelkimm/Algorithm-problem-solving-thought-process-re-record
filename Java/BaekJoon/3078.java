@@ -1,66 +1,49 @@
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.Comparator;
 
 class Main {
 
-  static int[][] minLines;
-  static int[][] maxLines;
+  static int N;
+  static int K;
+  static String[] namesInGradeOrder;
+  static int[][] cumulationAry;
+  static long answer = 0L;
 
   public static void main(String[] args) throws IOException {
+    // read
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    int N = Integer.parseInt(br.readLine().strip());
-    minLines = new int[N][3];
-    maxLines = new int[N][3];
+    String[] configInfo = br.readLine().split(" ");
+    N = Integer.parseInt(configInfo[0]);
+    K = Integer.parseInt(configInfo[1]);
 
-    for (int i = 0; i < N; i++) {
-      String[] line = br.readLine().split(" ");
-      int left = Integer.parseInt(line[0]);
-      int middle = Integer.parseInt(line[1]);
-      int right = Integer.parseInt(line[2]);
-      maxLines[i][0] = left;
-      maxLines[i][1] = middle;
-      maxLines[i][2] = right;
-
-      minLines[i][0] = left;
-      minLines[i][1] = middle;
-      minLines[i][2] = right;
+    namesInGradeOrder = new String[N + 1];
+    for (int order = 1; order <= N; order++) {
+      namesInGradeOrder[order] = br.readLine().strip();
     }
 
-    // max
-    for (int i = 1; i < N; i++) {
-      // decide left
-      maxLines[i][0] = maxLines[i][0] + Math.max(maxLines[i - 1][0], maxLines[i - 1][1]);
+    // initialize
+    cumulationAry = new int[21][N + 1];
+    for (int order = 1; order <= N; order++) {
+      // update one value
+      cumulationAry[namesInGradeOrder[order].length()][order] += 1;
 
-      // decide right
-      maxLines[i][2] = maxLines[i][2] + Math.max(maxLines[i - 1][1], maxLines[i - 1][2]);
-
-      // decide mid
-      maxLines[i][1] = maxLines[i][1] + Math.max(Math.max(maxLines[i - 1][0], maxLines[i - 1][1]), maxLines[i - 1][2]);
-    }
-
-    // min
-    for (int i = 1; i < N; i++) {
-      // decide left
-      minLines[i][0] = minLines[i][0] + Math.min(minLines[i - 1][0], minLines[i - 1][1]);
-
-      // decide right
-      minLines[i][2] = minLines[i][2] + Math.min(minLines[i - 1][1], minLines[i - 1][2]);
-
-      // decide mid
-      minLines[i][1] = minLines[i][1] + Math.min(Math.min(minLines[i - 1][0], minLines[i - 1][1]), minLines[i - 1][2]);
-    }
-
-    System.out.println(Arrays.stream(maxLines[N - 1]).max().getAsInt() + " " + Arrays.stream(minLines[N - 1]).min().getAsInt());
-  }
-
-  static void printAry(int[][] ary) {
-    for (int[] ints : ary) {
-      for (int v : ints) {
-        System.out.print(v + " ");
+      // update all value
+      for (int size = 2; size <= 20; size++) {
+        if (order + 1 >= N + 1)
+          continue;
+        cumulationAry[size][order + 1] = cumulationAry[size][order];
       }
-      System.out.println();
     }
-    System.out.println();
+
+    // calculate
+    for (int order = 1; order <= N; order++) {
+      int right = order + K <= N ? order + K : N;
+      int size = namesInGradeOrder[order].length();
+      int count = cumulationAry[size][right] - cumulationAry[size][order];
+      answer += (long)count;
+    }
+    System.out.println(answer);
   }
 }
