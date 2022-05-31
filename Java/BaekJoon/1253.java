@@ -14,24 +14,27 @@ class Main {
 
     int[] numbers = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
     Arrays.sort(numbers);
-
-    if (N <= 2){
-      System.out.println(0);
-      return;
-    }
-
     int answer = 0;
 
-    for (int target_idx = 2; target_idx < N; target_idx++) {
+    for (int target_idx = 0; target_idx < N; target_idx++) {
       int left = 0;
-      int right = target_idx - 1;
+      if (left == target_idx)
+        left += 1;
+      int right = N - 1;
+      if (right == target_idx)
+        right -= 1;
       while (left < right) {
         int sum = numbers[left] + numbers[right];
-        if (sum < numbers[target_idx])
+        if (sum < numbers[target_idx]){
           left += 1;
-        else if (sum > numbers[target_idx])
+          if (left == target_idx)
+            left += 1;
+        } else if (sum > numbers[target_idx]) {
           right -= 1;
-        else{
+          if (right == target_idx)
+            right -= 1;
+        }
+        else {
           answer += 1;
           break;
         }
