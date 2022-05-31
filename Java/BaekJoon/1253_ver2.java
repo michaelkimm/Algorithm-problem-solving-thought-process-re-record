@@ -18,23 +18,10 @@ class Main {
 
     for (int target_idx = 0; target_idx < N; target_idx++) {
       int left = 0;
-      int right = N - 1;
-      while (true) {
-        if (left == target_idx)
-          left += 1;
-        if (right == target_idx)
-          right -= 1;
-        if (left >= right)
-          break;
-        int sum = numbers[left] + numbers[right];
-        if (sum < numbers[target_idx])
-          left += 1;
-        else if (sum > numbers[target_idx])
-          right -= 1;
-        else {
-          answer += 1;
-          break;
-        }
+      int right = 1;
+      int sum = numbers[left] + numbers[right];
+      if (sum == numbers[target_idx]) {
+        answer += 1;
       }
     }
     System.out.println(answer);
