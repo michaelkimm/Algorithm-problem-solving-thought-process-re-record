@@ -1,10 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
+import java.util.*;
 
 
 class Main {
@@ -25,33 +22,56 @@ class Main {
       B[i] = Integer.parseInt(ms[i]);
     }
 
-    int[][] cumulativeSum = new int[M + 1][N + 1];
-    // cumulate A
-    for (int j = 1; j <= N; j++) {
-      cumulativeSum[0][j] = cumulativeSum[0][j - 1];
-      cumulativeSum[0][j] += A[j - 1];
-    }
-    // cumulate B with A
-    for (int i = 1; i <= M; i++) {
-      for (int j = 0; j <= N; j++) {
-        cumulativeSum[i][j] = cumulativeSum[i - 1][j];
-        cumulativeSum[i][j] += B[i - 1];
-      }
-    }
-    // two pointer on 2d array
-//    int left = 0;
-//    int right = N * M - 1;
-//    while (left < right) {
-//
-//    }
+    int[] cumulativeA = getCumulative(A);
+    List<Integer> ccA = getRangeSum(cumulativeA);
+    int[] cumulativeB = getCumulative(B);
 
-    for (int[] ints : cumulativeSum) {
-      for (int anInt : ints) {
-        System.out.print(anInt + " ");
-      }
-      System.out.println();
-    }
+    System.out.println("ca");
+    printAry(cumulativeA);
+
+    System.out.println("cca");
+    printAry(ccA);
+
+    System.out.println("cb");
+    printAry(cumulativeB);
+
     int answer = 0;
     System.out.println(answer);
+  }
+
+  private static List<Integer> getRangeSum(int[] ary) {
+    int N = ary.length;
+    ArrayList<Integer> result = new ArrayList<>();
+    for (int left = 0; left < N; left++) {
+      for (int right = left + 1; right < N; right++) {
+        result.add(ary[right] - ary[left]);
+      }
+    }
+    Collections.sort(result);
+    return result;
+  }
+
+  private static int[] getCumulative(int[] ary) {
+    int[] cumulative = new int[ary.length];
+    for (int i = 0; i < ary.length; i++) {
+      if (i != 0)
+        cumulative[i] = cumulative[i - 1];
+      cumulative[i] += ary[i];
+    }
+    return cumulative;
+  }
+
+  private static void printAry(int[] ary) {
+    for (int i = 0; i < ary.length; i++) {
+      System.out.print(ary[i] + " ");
+    }
+    System.out.println();
+  }
+
+  private static void printAry(List<Integer> ary) {
+    for (int i = 0; i < ary.size(); i++) {
+      System.out.print(ary.get(i) + " ");
+    }
+    System.out.println();
   }
 }
