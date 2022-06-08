@@ -25,25 +25,49 @@ class Main {
     // get prime numbers under maxNumber
     primeNumbers = getPrimeNumberUnder(maxNumber);
 
-    // get primeFactor of sum of numbers
-    long numbersMultiplied = Arrays.stream(numbers).reduce((result, value) -> result *= value).getAsLong();
-    Map<Long, Long> primeFactors = getPrimeFactorsOf(numbersMultiplied);
+    Map<Long, Long> primeFactors = new HashMap<>();
+    for (int i = 0; i < N; i++) {
+      Map<Long, Long> v = getPrimeFactorsOf(numbers[i]);
+      primeFactors = getPrimeFactorMultiplied(primeFactors, v);
+    }
 
     // get dividableFactor
     Map<Long, Long> dividableFactor = getDividableFactor(primeFactors, N);
 
-//    Map<Long, Long>[] primeFactorOfNumbers = new Map<Long, Long>[N];
+    // fix number
+    long moveCnt = 0L;
     for (int i = 0; i < N; i++) {
       Map<Long, Long> v = getPrimeFactorsOf(numbers[i]);
-      System.out.println("num: " + numbers[i]);
-      printMap(v);
+      moveCnt += getFixNeededCnt(v, dividableFactor);
     }
 
-    System.out.println(getPrimeFactorToNumber(dividableFactor));
+    System.out.println(getPrimeFactorToNumber(dividableFactor) + " " + moveCnt);
   }
 
-  static int getFixNeededCnt(Map<Long, Long> target, Map<Long, Long> dividableFactor) {
-    int haveCnt = 0;
+  static Map<Long, Long> getPrimeFactorMultiplied(Map<Long, Long> primeFactor1, Map<Long, Long> primeFactor2) {
+    Map<Long, Long> result = new HashMap<>();
+    for (Map.Entry<Long, Long> v1 : primeFactor1.entrySet()) {
+      if (primeFactor2.containsKey(v1.getKey())) {
+        result.put(v1.getKey(), v1.getValue() + primeFactor2.get(v1.getKey()));
+      }
+      else
+        result.put(v1.getKey(), v1.getValue());
+    }
+
+    for (Map.Entry<Long, Long> v2 : primeFactor2.entrySet()) {
+      if (!primeFactor1.containsKey(v2.getKey()))
+        result.put(v2.getKey(), v2.getValue());
+    }
+    return result;
+  }
+
+  static long getFixNeededCnt(Map<Long, Long> target, Map<Long, Long> dividableFactor) {
+    long divCnt = 0L;
+    for (Map.Entry<Long, Long> divadable_v : dividableFactor.entrySet()) {
+      divCnt += divadable_v.getValue();
+    }
+
+    long haveCnt = 0;
     for (Map.Entry<Long, Long> target_v : target.entrySet()) {
       for (Map.Entry<Long, Long> divadable_v : dividableFactor.entrySet()) {
         if (target_v.getKey() == divadable_v.getKey()) {
@@ -52,7 +76,8 @@ class Main {
         }
       }
     }
-    return result;
+
+    return divCnt - haveCnt;
   }
 
   static long getPrimeFactorToNumber(Map<Long, Long> primeFacetor) {
@@ -73,7 +98,7 @@ class Main {
   static Map<Long, Long> getDividableFactor(Map<Long, Long> primeFactors, int N) {
     Map<Long, Long> result = new HashMap<>();
     for (Map.Entry<Long, Long> pf : primeFactors.entrySet()) {
-      if (pf.getValue() / N >= 1) {
+      if (pf.getValue() / (long)N >= 1L) {
         result.put(pf.getKey(), pf.getValue() / (long)N);
       }
     }
@@ -102,6 +127,8 @@ class Main {
     primeAvailables[0] = false;
     primeAvailables[1] = false;
     for (long num = 2L; num * num <= maxNumber; num++) {
+      if (!primeAvailables[(int) num])
+        continue;
       for (long multiple = num * num; multiple <= maxNumber; multiple += num) {
         primeAvailables[(int)multiple] = false;
       }
