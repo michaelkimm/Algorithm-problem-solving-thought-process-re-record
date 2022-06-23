@@ -1,3 +1,4 @@
+from collections import defaultdict
 import sys
 input = sys.stdin.readline
 
@@ -8,12 +9,12 @@ dc = [0, 1, 1, 1, 0, -1, -1, -1]
 N, M, K = map(int, input().split())
 
 graph = [[[] for _ in range(N)] for _ in range(N)]
-fireballs = []
+fireballs = defaultdict(int)
 for _ in range(M):
     r, c, m, s, d = map(int, input().split())
     r -= 1
     c -= 1
-    fireballs.append((r, c, m, s, d))
+    fireballs[(r, c, m, s, d)] += 1
     graph[r][c].append((m, s, d))
 
 
@@ -27,9 +28,9 @@ def move(fireballInfo, graph):
 
 def getFireballMassSum(fireballs):
     sum = 0
-    for fireballInfo in fireballs:
+    for fireballInfo, cnt in fireballs.items():
         r, c, m, s, d = fireballInfo
-        sum += m
+        sum += (m * cnt)
     return sum
 
 def isAlldirectionOddOrEven(directions):
@@ -62,7 +63,10 @@ def doSumAndDivideOperation(fireballs, graph):
                 speedSum += s
                 directions.append(d)
                 
-                fireballs.remove((i, j, m, s, d))
+                if (i, j, m, s, d) in fireballs.keys():
+                    fireballs[(i, j, m, s, d)] -= 1
+                    if fireballs[(i, j, m, s, d)] <= 0:
+                        fireballs.pop((i, j, m, s, d))
             
             # 질량은 ⌊(합쳐진 파이어볼 질량의 합)/5⌋
             singleMass = massSum // 5
@@ -77,25 +81,14 @@ def doSumAndDivideOperation(fireballs, graph):
             # 새 파이어볼들로 교체
             graph[i][j] = newFireballs
             for m, s, d in newFireballs:
-                fireballs.append((i, j, m, s, d))
-
-def print2dArray(description, ary):
-    print(description)
-    for line in ary:
-        print(line)
-    print("=================")
-
-def print1dArray(description, ary):
-    print(description)
-    print(ary)
-    print("=================")
+                fireballs[(i, j, m, s, d)] += 1
 
 movementCnt = 0
 while movementCnt < K:
-    newFireballs = []
-    for fireballInfo in fireballs:
+    newFireballs = defaultdict(int)
+    for fireballInfo in fireballs.keys():
         movedFireballInfo = move(fireballInfo, graph)
-        newFireballs.append(movedFireballInfo)
+        newFireballs[movedFireballInfo] += 1
     fireballs = newFireballs
     
     doSumAndDivideOperation(fireballs, graph)
