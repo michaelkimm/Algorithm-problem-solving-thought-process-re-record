@@ -47,6 +47,8 @@
 
 [백준 3078](https://github.com/michaelkimm/Algorithm_diary/commit/7e56f8dfd2df9bb430bdbb31c23a2a30828bfdfd)
 
+[백준 2143](https://github.com/michaelkimm/Algorithm_diary/commit/9f44835a2957016737f83d13efdb6226b124bb2c)
+
 ### 이진 탐색
 [프로그래머스 입국 심사](https://github.com/michaelkimm/Algorithm_practice/commit/7c7a40288016dc6d1fcf18c27c8acdf7e02cfe7c)
 
@@ -76,6 +78,8 @@
 [백준 2156](https://github.com/michaelkimm/Algorithm_diary/commit/2bbedcdb098dca0ca0d2027013ad09ced816a5c0)
 
 [프로그래머스 광고 삽입](https://github.com/michaelkimm/Algorithm_diary/commit/9558e3d67914bce861ab83b22cff7dcfbb5d4c6e)
+
+[백준 2143](https://github.com/michaelkimm/Algorithm_diary/commit/9f44835a2957016737f83d13efdb6226b124bb2c)
 
 ### BFS
 [프로그래머스 카드 짝 맞추기 2번째 풀이](https://github.com/michaelkimm/Algorithm_diary/commit/9744cb2fa8fc255f3f1bac1a2ad52cf07653748a)
