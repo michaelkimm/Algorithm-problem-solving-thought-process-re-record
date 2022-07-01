@@ -24,10 +24,68 @@
 
 **블로그:** [티스토리 개발자_갈레 알고리즘](https://ujkim-game.tistory.com/category/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98)
 
+**커밋:** 아래 사고 과정 복기 기록 참조
+
 <br>
 <br>
 
 
 ## 사고 과정 복기 기록
+
+### 투 포인터
+[백준 2143](https://github.com/michaelkimm/Algorithm_diary/commit/98ba76166ef604d8aa4fb547353421e972bcfb25)
+[백준 1253](https://github.com/michaelkimm/Algorithm_diary/commit/a2664414dd5abb1ee09f3edf8885ed523af1589a)
+[백준 2473](https://github.com/michaelkimm/Algorithm_diary/commit/6ec21ae91cfebaf196c4badcf1057bce7f8fe909)
+[백준 2470](https://github.com/michaelkimm/Algorithm_diary/commit/635e1d1977097fce4532b9d62489d0fba64de632)
+[백준 3078](https://github.com/michaelkimm/Algorithm_diary/commit/7e56f8dfd2df9bb430bdbb31c23a2a30828bfdfd)
+
 ### 이진 탐색
 [프로그래머스 입국 심사](https://github.com/michaelkimm/Algorithm_practice/commit/7c7a40288016dc6d1fcf18c27c8acdf7e02cfe7c)
+
+### 크루스칼 알고리즘
+[백준 2887](https://github.com/michaelkimm/Algorithm_diary/commit/ac0f5525cd657bb9adeec2f7485fee06703c6fa1)
+[백준 2904](https://github.com/michaelkimm/Algorithm_diary/commit/57765d37377e7c06f8bf578ae8919b93b32fd08c)
+
+### 에라토스테네스의 체
+[백준 17425](https://github.com/michaelkimm/Algorithm_diary/commit/e1d695120d6cb443294ceee15d4c09b9e556dcd3)
+
+### DP
+[프로그래머스 파괴되지 않은 건물](https://github.com/michaelkimm/Algorithm_diary/commit/3ecd25722f651a87ae7ae6d693b31dd874dbd12d)
+[백준 1162](https://github.com/michaelkimm/Algorithm_diary/commit/f1d42644229848f9df31feb843ce48c633c42576)
+[백준 17425](https://github.com/michaelkimm/Algorithm_diary/commit/e1d695120d6cb443294ceee15d4c09b9e556dcd3)
+[백준 2143](https://github.com/michaelkimm/Algorithm_diary/commit/98ba76166ef604d8aa4fb547353421e972bcfb25)
+[백준 2096](https://github.com/michaelkimm/Algorithm_diary/commit/d956ee71ec1c811bf90bd990f542e710f4edece0)
+[백준 2156](https://github.com/michaelkimm/Algorithm_diary/commit/2bbedcdb098dca0ca0d2027013ad09ced816a5c0)
+
+### BFS
+[프로그래머스 카드 짝 맞추기 2번째 풀이](https://github.com/michaelkimm/Algorithm_diary/commit/9744cb2fa8fc255f3f1bac1a2ad52cf07653748a)
+[프로그래머스 카드 짝 맞추기 1번째 풀이](https://github.com/michaelkimm/Algorithm_diary/commit/89d04531ba358c9823035e92fd4a124b498cfab5)
+[프로그래머스 양과 늑대](https://github.com/michaelkimm/Algorithm_diary/commit/28599321f910dc2c2c95749aa392a98b2e81d426)
+[백준 2206](https://github.com/michaelkimm/Algorithm_diary/commit/19e6dd0f212370435753355e08cd2e6fc4a45b56)
+[숨바꼭질](https://github.com/michaelkimm/Algorithm_diary/commit/c1ef41fac2936623a1e930d4ea6b84d2dbe3040a)
+[프로그래머스 BlockMoving](https://github.com/michaelkimm/Algorithm_diary/commit/2942fa796d9c7c814d50d238f9b58e30dc89967d)
+[백준 구슬탈출](https://github.com/michaelkimm/Algorithm_diary/commit/999577696f3cfa4d9056ae97819b4e682f8e6760)
+
+### 다익스트라 알고리즘
+[백준 1162](https://github.com/michaelkimm/Algorithm_diary/commit/f1d42644229848f9df31feb843ce48c633c42576)
+[백준 1486](https://github.com/michaelkimm/Algorithm_diary/commit/43f30f6ca60aaa140b73c083085b6530627d1b9e)
+[백준 16681](https://github.com/michaelkimm/Algorithm_diary/commit/4c19f038af33a2dbd06ce8b086b68c4ccb982017)
+
+### 브루트포스 알고리즘
+[프로그래머스 외벽 점검](https://github.com/michaelkimm/Algorithm_diary/commit/951be338a6bfa42bb452e3305e7205825f160d1c)
+
+### 수학
+[백준 1011](https://github.com/michaelkimm/Algorithm_diary/commit/c33dde8460f2c7e930f1a113d4d5510f24d0bc0c)
+
+### 재귀
+[토마토](https://github.com/michaelkimm/Algorithm_diary/commit/892194e7487220eda19cb843861f07be649caa8d)
+
+### 구현
+[프로그래머스 자물쇠와 열쇠](https://github.com/michaelkimm/Algorithm_diary/commit/d991fff3777ee51d9d89b428404c3af964b47670)
+[프로그래머스 n진수 게임](https://github.com/michaelkimm/Algorithm_diary/commit/abe394fb08782ea670589ea7fa55bd5ab8eef20c)
+[프로그래머스 양궁 대회](https://github.com/michaelkimm/Algorithm_diary/commit/b73acadcbe2809631a3c5ed0c23fc67fda11e0f5)
+[프로그래머스 Move110](https://github.com/michaelkimm/Algorithm_diary/commit/9bffa9598694784ceefa813de92af364017e24b1)
+[프로그래머스 압축](https://github.com/michaelkimm/Algorithm_diary/commit/eb061adb7ccf031a5ef1ad8777ec676403dbe141)
+[프로그래머스 CorrectParentheses](https://github.com/michaelkimm/Algorithm_diary/commit/f307fd9b5d2cf7bea2bf92449188ed2491d8e81f)
+[프로그래머스 방금그곡](https://github.com/michaelkimm/Algorithm_diary/commit/852c2285faf72d6bbd42c123646afb241a3dbe1c)
+[프로그래머스 방문 길이](https://github.com/michaelkimm/Algorithm_diary/commit/5d109eb7cfce012e94006d45dd4a6afc0850495d)
