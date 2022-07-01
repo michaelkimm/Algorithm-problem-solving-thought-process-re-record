@@ -24,4 +24,4 @@
 
 
 ## 이진 탐색
-[프로그래머스 입국 심사] (https://github.com/michaelkimm/Algorithm_practice/commit/7c7a40288016dc6d1fcf18c27c8acdf7e02cfe7c)
+[프로그래머스 입국 심사](https://github.com/michaelkimm/Algorithm_practice/commit/7c7a40288016dc6d1fcf18c27c8acdf7e02cfe7c)
