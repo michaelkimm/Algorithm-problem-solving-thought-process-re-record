@@ -147,3 +147,5 @@
 [프로그래머스 캐시](https://github.com/michaelkimm/Algorithm_diary/commit/39643aea5a1ba3a3922f713fd18084c2be800002)
 
 [프로그래머스 2OrLessDifferentBit](https://github.com/michaelkimm/Algorithm_diary/commit/a156631c3a0a4217dc8d79b34c96381492e5beaf)
+
+[뱀만들기](https://github.com/michaelkimm/Algorithm_diary/commit/5c61d6216b867e4796fa2c71e25acefb2684c52d)
