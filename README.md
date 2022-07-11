@@ -157,3 +157,5 @@
 [백준 14488 사고 과정](https://github.com/michaelkimm/Algorithm_diary/commit/a5f15492ec5c38ecd06f26096cc6b73f82769029)
 
 [백준 14503 사고 과정](https://github.com/michaelkimm/Algorithm_diary/commit/5a00b1156d7e7235c20ae5c939606400085213fc)
+
+[백준 14890 사고 과정](https://github.com/michaelkimm/Algorithm_diary/commit/81040d18b023a8d2c30dfb305706f217a2e05bb7)
