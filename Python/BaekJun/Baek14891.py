@@ -21,11 +21,9 @@ def rotateSingleWheel(wheel, rotateDir):
   wheelEdgeCnt = len(wheel)
   tempWheel = [v for v in wheel]
   if rotateDir == 1:
-    for idx in range(wheelEdgeCnt):
-      wheel[(idx + 1) % wheelEdgeCnt] = tempWheel[idx]
+    wheel = wheel[-1] + wheel[:-1]
   elif rotateDir == -1:
-    for idx in range(wheelEdgeCnt):
-      wheel[idx] = tempWheel[(idx + 1) % wheelEdgeCnt]
+    wheel = wheel[1:] + wheel[0]
   
 
 def getRotateDir(myEdgeNum, counterEdgeNum, myRotateDir):
@@ -76,4 +74,3 @@ for idx in range(len(wheels)):
   answer += getScore(wheels[idx], idx + 1)
 
 print(answer)
-
