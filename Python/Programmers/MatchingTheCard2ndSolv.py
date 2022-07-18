@@ -106,7 +106,7 @@ def solution(board, r, c):
         # 엔터가 안되있으면 그냥 해도 됨.
         elif cur_board[indexOf1D] != '0' and entered == '0':
             entered = cur_board[indexOf1D]
-            enteredIdx =indexOf1D
+            enteredIdx = indexOf1D
             next_board = clone1DBoardTo1D(cur_board)
             q.append((next_board, cur_r, cur_c, cur_cost + 1, erased, entered, enteredIdx))
 
