@@ -4,6 +4,7 @@ from collections import deque
 di = [0, -1, -1, 0, 1, 1, 1, 0, -1]
 dj = [0, 0, -1, -1, -1, 0, 1, 1, 1]
 
+# input
 graph = []
 for _ in range(4):
     inputLine = list(map(int, input().split()))
@@ -45,10 +46,6 @@ def changeSeat(fi, fj, fishNum, fishDir, graph, fishes):
     graph[fi][fj] = temp
     fishes[temp[0]] = (temp, fi, fj)
 
-def rotate(dirIdx):
-    ret = (dirIdx + 1) % 9
-    return ret if ret != 0 else 1
-
 def moveFishes(graph):
     fishes = [(num, -1, -1) for num in range(17)]
     # 물고기 정렬
@@ -65,70 +62,47 @@ def moveFishes(graph):
             continue
 
         (fishNum, fishDir), fi, fj = fishes[fishNum]
-        rotatableCnt = 9
-        while rotatableCnt >= 1:
-            if isMovable(fi, fj, fishDir, graph):
-                changeSeat(fi, fj, fishNum, fishDir, graph, fishes)
+        for rotateCnt in range(8):
+            newFishDir = (fishDir + rotateCnt) % 9 if (fishDir + rotateCnt) % 9 != 0 else 1
+            if isMovable(fi, fj, newFishDir, graph):
+                changeSeat(fi, fj, fishNum, newFishDir, graph, fishes)
                 break
-            else:
-                fishDir = rotate(fishDir)
-                rotatableCnt -= 1
     
 def getHashableWithList(graph):
     return tuple([tuple([graph[i][j] for j in range(len(graph[0]))]) for i in range(len(graph))])
 
-def sharkMovable(sharkPose, sharkDir, graph):
-    global di, dj
-    for dist in range(1, 4):
-        ni = sharkPose[0] + dist * di[sharkDir]
-        nj = sharkPose[1] + dist * dj[sharkDir]
-        if not (0 <= ni < 4 and 0 <= nj < 4):
-            return False
-        if 1 <= graph[ni][nj][0] <= 16:
-            return True
-    return False
+def bfs(graph):
+    # 시작
+    eatenFishNumSum, sharkPose, sharkDir = eatFish(graph, fishPose=(0, 0))
+    maxEatenFishNumSum = eatenFishNumSum
+    newGraph = duplicateGraph(graph)
+    q = deque([(newGraph, sharkDir, sharkPose, eatenFishNumSum)])
+    visited = set()
+    visited.add(getHashableWithList(newGraph))
 
-def getSharkMovablePose(sharkPose, sharkDir, graph):
-    global di, dj
-    ret = []
-    for dist in range(1, 4):
-        ni = sharkPose[0] + dist * di[sharkDir]
-        nj = sharkPose[1] + dist * dj[sharkDir]
-        if not (0 <= ni < 4 and 0 <= nj < 4):
-            break
-        if 1 <= graph[ni][nj][0] <= 16:
-            ret.append((ni, nj))
-    return ret
+    while q:
+        graph, sharkDir, sharkPose, eatenFishNumSum = q.popleft()
 
-# 시작
-eatenFishNumSum, sharkPose, sharkDir = eatFish(graph, fishPose=(0, 0))
-maxEatenFishNumSum = eatenFishNumSum
-newGraph = duplicateGraph(graph)
-q = deque([(newGraph, sharkDir, sharkPose, eatenFishNumSum)])
-visited = set()
-visited.add(getHashableWithList(newGraph))
+        # 물고기 움직이기
+        moveFishes(graph)
 
-while q:
-    graph, sharkDir, sharkPose, eatenFishNumSum = q.popleft()
-
-    # 물고기 움직이기
-    moveFishes(graph)
-
-    # 상어 움직일 수 없으면 탈출
-    if not sharkMovable(sharkPose, sharkDir, graph):
         maxEatenFishNumSum = max(maxEatenFishNumSum, eatenFishNumSum)
-        continue
-    
-    # 간선
-    sharkMovablePoses = getSharkMovablePose(sharkPose, sharkDir, graph)
-    # 상어 움직이기
-    for fishPose in sharkMovablePoses:
-        newGraph = duplicateGraph(graph)
-        tempEatenFishNumSum, newSharkPose, newSharkDir = eatFish(newGraph, fishPose, sharkPose)
-        newEatenFishNum = eatenFishNumSum + tempEatenFishNumSum
-        if getHashableWithList(newGraph) in visited:
-            continue
-        visited.add(getHashableWithList(newGraph))
-        q.append((newGraph, newSharkDir, newSharkPose, newEatenFishNum))
 
-print(maxEatenFishNumSum)
+        # 간선
+        # 상어 움직이기
+        for dist in range(1, 4):
+            ni = sharkPose[0] + dist * di[sharkDir]
+            nj = sharkPose[1] + dist * dj[sharkDir]
+            if not (0 <= ni < 4 and 0 <= nj < 4) or not (1 <= graph[ni][nj][0] <= 16):
+                continue
+
+            newGraph = duplicateGraph(graph)
+            tempEatenFishNumSum, newSharkPose, newSharkDir = eatFish(newGraph, (ni, nj), sharkPose)
+            newEatenFishNum = eatenFishNumSum + tempEatenFishNumSum
+            if getHashableWithList(newGraph) in visited:
+                continue
+            visited.add(getHashableWithList(newGraph))
+            q.append((newGraph, newSharkDir, newSharkPose, newEatenFishNum))
+    return maxEatenFishNumSum
+
+print(bfs(graph))
