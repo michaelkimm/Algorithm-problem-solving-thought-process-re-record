@@ -14,7 +14,7 @@ def spreadDust(graph):
     for i in range(R):
         for j in range(C):
             # 청정기 자리는 pass, 먼지 없는 경우도 pass
-            if graph[i][j] == -1 or graph[i][j] == 0:
+            if graph[i][j] == -1 or graph[i][j] == 0:           
                 continue
             spreadedCnt = 0
             spreadAmount = graph[i][j] // 5 
@@ -33,9 +33,6 @@ def spreadDust(graph):
         for j in range(C):
             graph[i][j] += tempGraph[i][j] 
     return
-
-def turnOnAirCleaner(graph):
-    global R, C, di, dj
 
 def getAirCleanerPose(graph):
     global R, C
@@ -97,9 +94,9 @@ def setDusts(poses, dusts, graph):
 
 def turnOnAirCleaner(graph):
     airCleanerPoses = getAirCleanerPose(graph)
-    airCleanerUpPose = airCleanerPoses[0]
     
     # 반시계 청소
+    airCleanerUpPose = airCleanerPoses[0]
     airPathPoses = getAirPathPoses(graph, airCleanerUpPose, CW = False)
     dustAmounts = getDustAmounts(airPathPoses, graph)
     cleanDusts(airPathPoses, graph)
