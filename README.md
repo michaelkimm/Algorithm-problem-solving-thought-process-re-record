@@ -120,6 +120,8 @@
 [프로그래머스 JumpAndTeleporting 사고 과정](https://github.com/michaelkimm/Algorithm_diary/commit/cffdc0d7b9b18cd9500c08f4bc7b2e3df0e71d48)
 
 ### 구현
+[백준 21609 사고과정](https://github.com/michaelkimm/Algorithm_diary/commit/5e56b3145ddf401469f33ea91cad4f5b36bcffc9)
+
 [백준 12100 사고 과정](https://github.com/michaelkimm/Algorithm_diary/commit/420efd0f78931b372205f82c5a6d69524a36fedf)
 
 [프로그래머스 자물쇠와 열쇠 사고 과정](https://github.com/michaelkimm/Algorithm_diary/commit/d991fff3777ee51d9d89b428404c3af964b47670)
