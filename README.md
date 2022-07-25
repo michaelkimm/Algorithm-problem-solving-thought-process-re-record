@@ -22,10 +22,10 @@
 
 **프로그래머스 질문하기 링크:** [프로그래머스 파괴되지 않은 건물 사고 과정](https://programmers.co.kr/questions/30876)
 
-**블로그:** [티스토리 개발자_갈레 알고리즘](https://ujkim-game.tistory.com/category/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98)
-
-**커밋:** 아래 사고 과정 복기 기록 참조
-
+**커밋:** 아래 사고 과정 복기 기록 참조(**아래 3개는 대표 예시입니다.**)
+- [프로그래머스 카드 짝 맞추기 2번째 풀이 사고 과정](https://github.com/michaelkimm/Algorithm_diary/commit/9744cb2fa8fc255f3f1bac1a2ad52cf07653748a)
+- [백준 21609 사고과정](https://github.com/michaelkimm/Algorithm_diary/commit/5e56b3145ddf401469f33ea91cad4f5b36bcffc9)
+- [프로그래머스 입국 심사 사고 과정](https://github.com/michaelkimm/Algorithm_practice/commit/7c7a40288016dc6d1fcf18c27c8acdf7e02cfe7c)
 <br>
 <br>
 
