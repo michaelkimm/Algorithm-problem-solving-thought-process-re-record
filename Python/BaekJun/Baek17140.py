@@ -37,13 +37,17 @@ def doOperationR(ary):
     for i in range(len(ary)):
         maxRowSize = max(maxRowSize, len(ary[i]))
     
-    # row 크기 재조정
+    # row 크기 똑같이 맞추기
     for i in range(len(ary)):
         ary[i].extend([0 for _ in range(maxRowSize - len(ary[i]))])
+
+    # row 크기 100이하로 유지
+    dumpHorizontal(ary)
 
 def getOperationCResult(ary):
     tAry = transpose(ary)
     doOperationR(tAry)
+    dumpHorizontal(ary)
     retAry = transpose(tAry)
     return retAry
 
@@ -52,35 +56,23 @@ def dumpHorizontal(ary):
     for i in range(len(ary)):
         ary[i] = ary[i][:100]
 
-def getVerticallyDumpedAry(ary):
-    tAry = transpose(ary)
-    dumpHorizontal(tAry)
-    retAry = transpose(tAry)
-    return retAry
-
-def print2DArray(ary):
-    for line in ary:
-        print(line)
-    print("===============")
-
 def checkAnswerable(A, r, c):
     return len(A) >= r + 1 and len(A[0]) >= c + 1
 
 time = 0
 
-while not checkAnswerable(A, r, c) or (A[r][c] != k and time <= 100):
-    if len(A) >= len(A[0]):
-        doOperationR(A)
-    else:
-        A = getOperationCResult(A)
-    
-    if len(A) > 100:
-        dumpHorizontal(A)
-    if len(A[0]) > 100:
-        A = getVerticallyDumpedAry(A) 
-    time += 1
+while True:
+    if time > 100:
+        time = -1
+        break
+    if not checkAnswerable(A, r, c) or A[r][c] != k:
+        if len(A) >= len(A[0]):
+            doOperationR(A)
+        else:
+            A = getOperationCResult(A)
+        
+        time += 1
+    elif A[r][c] == k:
+        break
 
-if not checkAnswerable(A, r, c) or A[r][c] != k:
-    print(-1)
-else:
-    print(time)
+print(time)
