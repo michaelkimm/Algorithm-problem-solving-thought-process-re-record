@@ -8,18 +8,44 @@ dj = [1, -1, 0, 0]
 N, K = map(int, input().split())
 # 0은 흰색, 1은 빨간색, 2는 파란색
 colorGraph = [list(map(int, input().split())) for _ in range(N)]
-horseGraph = [[0 for _ in range(N)] for _ in range(N)]
+horsePoses = [(-1, -1) for _ in range(K + 1)]
+stackedGraph = [[[] for _ in range(N)] for _ in range(N)]
+horseDirs = [-1 for _ in range(K + 1)]
+targetStackedHeight = 4
 
-horseDirs = [-1] * (K + 1)
-horsePoses = [(0,0)] * (K + 1)
-horseOnAnother = [False] * (K + 1)
-horseLayers = [[] for _ in range(K + 1)]
 for horseNum in range(1, K + 1):
     i, j, direction = map(int, input().split())
-    horseDirs[horseNum] = direction - 1
-    horsePoses[horseNum] = (i - 1, j - 1)
-    horseGraph[i - 1][j - 1] = horseNum
+    i -= 1
+    j -= 1
+    direction -= 1
+    horsePoses[horseNum] = (i, j)
+    stackedGraph[i][j].append(horseNum)
+    horseDirs[horseNum] = direction
 
+def flipStacked(horseNum):
+    orgBottom = horseNum
+    hi, hj = horsePoses[orgBottom]
+    orgStacked = stackedGraph[hi][hj]
+    horseIdxInStakced = orgStacked.index(horseNum)
+    flipTargetStacked = orgStacked[horseIdxInStakced:]
+    flipedStack = flipTargetStacked[::-1]
+
+    # 새롭게 올릴 스택 만들기
+    newStacked = orgStacked[:horseIdxInStakced]
+    newStacked.extend(flipedStack)
+
+    # 만들어진 새 스택으로 업데이트
+    stackedGraph[hi][hj] = newStacked
+    newBottom = flipedStack[0]
+    return newBottom
+
+def getNextPose(horseNum, horsePoses, horseDir):
+    ni = horsePoses[horseNum][0] + di[horseDir[horseNum]]
+    nj = horsePoses[horseNum][1] + dj[horseDir[horseNum]]
+    return ni, nj
+
+def isInBoundary(ni, nj):
+    return 0 <= ni < N and 0 <= nj < N
 
 def getReverseDirection(direction):
     # →, ←, ↑, ↓
@@ -28,118 +54,62 @@ def getReverseDirection(direction):
     elif direction == 2: return 3
     else: return 2
 
-def moveSingleHorse(horseNum, ti, tj, horsePoses, horseLayers, horseOnAnother):
-    # 타겟 칸에 말 있다고 가정
-    toTop = True
-    # 타겟 칸에 말 없는 경우
-    if horseGraph[ti][tj] == 0:
-        toTop = False
+def moveHorse(ti, tj, horseNum):
+    hi, hj = horsePoses[horseNum]
+    horseStackedIdx = stackedGraph[hi][hj].index(horseNum)
+    targetMovableStacked = stackedGraph[hi][hj][horseStackedIdx:]
 
-    bi = horsePoses[horseNum][0]
-    bj = horsePoses[horseNum][1]
-    # 현재 자리 비우기
-    horseGraph[bi][bj] = 0
-    # 위치 옮기기
-    if not toTop:
-        horseGraph[ti][tj] = horseNum
-    else:
-        horseLayers[horseGraph[ti][tj]].extend([horseNum] + horseLayers[horseNum])
-        horseLayers[horseNum] = []
-        horseOnAnother[horseNum] = True
-    horsePoses[horseNum] = (ti, tj)
-    # 타고 있는 말도 위치 옮기기
-    for horseOnhorse in horseLayers[horseNum]:
-        horsePoses[horseOnhorse] = (ti, tj)
+    # 현재 위치에서 옮겨질 탑 제거
+    stackedGraph[hi][hj] = stackedGraph[hi][hj][:horseStackedIdx]
 
-def reverseHorseComposition(horseNum, horseLayers, horsePoses, horseGraph, horseOnAnother):
-    beforeBottom = horseNum
-    layer = [horseNum]
-    layer.extend(horseLayers[horseNum])
-    reversedLayer = layer[::-1]
-    newBottom = reversedLayer.pop(0)
+    # 옮겨질 위치에 탑 쌓기
+    stackedGraph[ti][tj].extend(targetMovableStacked)
 
-    # 이전 horse 흔적 지우기
-    horseLayers[beforeBottom] = []
-    horseOnAnother[beforeBottom] = True
-    # 새로운 bottom 설정
-    horseLayers[newBottom] = reversedLayer
-    horseOnAnother[newBottom] = False
-    horseGraph[horsePoses[beforeBottom][0]][horsePoses[beforeBottom][1]] = newBottom
-    return newBottom
+    # horsePoses 업데이트
+    for movedHorseNum in targetMovableStacked:
+        horsePoses[movedHorseNum] = (ti, tj)
+    
+    return len(stackedGraph[ti][tj]) >= targetStackedHeight
 
-def moveTo(ti, tj, horseNum, horsePoses, horseOnAnother, horseLayers, horseGraph):
+def moveHorseWithoutBlueColorRule(ti, tj, horseNum):
+    # 다음 칸 색이 빨강인 경우
     if colorGraph[ti][tj] == 1:
-        # A번 말과 그 위에 있는 모든 말의 쌓여있는 순서를 반대로 바꾼다.
-        horseNum = reverseHorseComposition(horseNum, horseLayers, horsePoses, horseGraph, horseOnAnother)
-        # print("reversed!")
-        # printState(horsePoses, horseOnAnother, horseLayers)
+        horseNum = flipStacked(horseNum)
+    return moveHorse(ti, tj, horseNum)
 
-    moveSingleHorse(horseNum, ti, tj, horsePoses, horseLayers, horseOnAnother)
-
-def getNextPose(horseNum, horsePoses, horseDir):
-    global di, dj
-    ni = horsePoses[horseNum][0] + di[horseDir[horseNum]]
-    nj = horsePoses[horseNum][1] + dj[horseDir[horseNum]]
-    return ni, nj
-
-def isInBoundary(ni, nj):
-    return 0 <= ni < N and 0 <= nj < N
-
-def moveSingleHorseWithColorRule(horseNum, horseDirs, horsePoses, horseOnAnother, horseLayers, horseGraph):
-    global N, di, dj
-    ni, nj = getNextPose(horseNum, horsePoses, horseDirs)
-
+def moveHorseWithBlueColorRule(horseNum):
+    ni = horsePoses[horseNum][0] + di[horseDirs[horseNum]]
+    nj = horsePoses[horseNum][1] + dj[horseDirs[horseNum]]
     if not isInBoundary(ni, nj) or colorGraph[ni][nj] == 2:
         # 방향 반대, 한칸 전진 시도.
         horseDirs[horseNum] = getReverseDirection(horseDirs[horseNum])
-        nni, nnj = getNextPose(horseNum, horsePoses, horseDirs)
-        if not isInBoundary(nni, nnj) or colorGraph[nni][nnj] == 2:
-            return
-        moveTo(nni, nnj, horseNum, horsePoses, horseOnAnother, horseLayers, horseGraph)
-        return
+        ni, nj = getNextPose(horseNum, horsePoses, horseDirs)
+        if not isInBoundary(ni, nj) or colorGraph[ni][nj] == 2:
+            return False
 
-    moveTo(ni, nj, horseNum, horsePoses, horseOnAnother, horseLayers, horseGraph)
+    return moveHorseWithoutBlueColorRule(ni, nj, horseNum)
 
-def print2DArray(ary):
-    for line in ary:
-        print(line)
-    print("=======================")
-
-def printState(horsePoses, horseOnAnother, horseLayers):
-    print("horsePoses")
-    print(horsePoses)
-    print("horseOnAnother")
-    print(horseOnAnother)
-    print("horseLayers")
-    print(horseLayers)
-    print("===================")
-
-for horseNum in range(1, K + 1):
-    if not horseOnAnother[horseNum]:
-        # print(horseNum, "is movable!")
-        
-        moveSingleHorseWithColorRule(horseNum, horseDirs, horsePoses, horseOnAnother, horseLayers, horseGraph)
-        # print("-- moved! --")
-        # printState(horsePoses, horseOnAnother, horseLayers)
-        
-def existsHeightLargerThan(horseLayers, height):
-    for layer in horseLayers:
-        if len(layer) + 1 >= height:
+def isMaxStackedHeightHigherThan(height):
+    for horseNum in range(1, K + 1):
+        i, j = horsePoses[horseNum]
+        if len(stackedGraph[i][j]) >= height:
             return True
     return False
-
+    
 time = 0
+foundAnswer = False
 while True:
     if time > 1000:
         time = -1
         break
-    if existsHeightLargerThan(horseLayers, 4):
-        print(horseLayers)
-        print("got it!")
+
+    time += 1
+    for horseNum in range(1, K + 1):
+        result = moveHorseWithBlueColorRule(horseNum)
+        if result:
+            foundAnswer = True
+            break
+    if foundAnswer:
         break
     
-    for horseNum in range(1, K + 1):
-        moveSingleHorseWithColorRule(horseNum, horseDirs, horsePoses, horseOnAnother, horseLayers, horseGraph)
-    time += 1
-
 print(time)
