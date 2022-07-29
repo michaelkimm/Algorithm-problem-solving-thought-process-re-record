@@ -5,6 +5,7 @@ input = sys.stdin.readline
 di = [0, 0, -1 , 1]
 dj = [1, -1, 0, 0]
 
+# 입력
 N, K = map(int, input().split())
 # 0은 흰색, 1은 빨간색, 2는 파란색
 colorGraph = [list(map(int, input().split())) for _ in range(N)]
@@ -22,23 +23,6 @@ for horseNum in range(1, K + 1):
     stackedGraph[i][j].append(horseNum)
     horseDirs[horseNum] = direction
 
-def flipStacked(horseNum):
-    orgBottom = horseNum
-    hi, hj = horsePoses[orgBottom]
-    orgStacked = stackedGraph[hi][hj]
-    horseIdxInStakced = orgStacked.index(horseNum)
-    flipTargetStacked = orgStacked[horseIdxInStakced:]
-    flipedStack = flipTargetStacked[::-1]
-
-    # 새롭게 올릴 스택 만들기
-    newStacked = orgStacked[:horseIdxInStakced]
-    newStacked.extend(flipedStack)
-
-    # 만들어진 새 스택으로 업데이트
-    stackedGraph[hi][hj] = newStacked
-    newBottom = flipedStack[0]
-    return newBottom
-
 def getNextPose(horseNum, horsePoses, horseDir):
     ni = horsePoses[horseNum][0] + di[horseDir[horseNum]]
     nj = horsePoses[horseNum][1] + dj[horseDir[horseNum]]
@@ -54,7 +38,7 @@ def getReverseDirection(direction):
     elif direction == 2: return 3
     else: return 2
 
-def moveHorse(ti, tj, horseNum):
+def moveHorseWithoutBlueColorRule(ti, tj, horseNum):
     hi, hj = horsePoses[horseNum]
     horseStackedIdx = stackedGraph[hi][hj].index(horseNum)
     targetMovableStacked = stackedGraph[hi][hj][horseStackedIdx:]
@@ -68,14 +52,14 @@ def moveHorse(ti, tj, horseNum):
     # horsePoses 업데이트
     for movedHorseNum in targetMovableStacked:
         horsePoses[movedHorseNum] = (ti, tj)
+
+    # 다음 칸 색이 빨강인 경우
+    if colorGraph[ti][tj] == 1:
+        idx = stackedGraph[ti][tj].index(horseNum)
+        stackedGraph[ti][tj] = stackedGraph[ti][tj][:idx] + stackedGraph[ti][tj][idx:][::-1]
     
     return len(stackedGraph[ti][tj]) >= targetStackedHeight
 
-def moveHorseWithoutBlueColorRule(ti, tj, horseNum):
-    # 다음 칸 색이 빨강인 경우
-    if colorGraph[ti][tj] == 1:
-        horseNum = flipStacked(horseNum)
-    return moveHorse(ti, tj, horseNum)
 
 def moveHorseWithBlueColorRule(horseNum):
     ni = horsePoses[horseNum][0] + di[horseDirs[horseNum]]
