@@ -128,4 +128,4 @@ while curPose[0] != 0 or curPose[1] != 0:
     else:
         curPose = moveForward(graph, curPose)
 
-print(sandErasedAmount)
+print(sandErasedAmount)  
