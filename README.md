@@ -37,6 +37,8 @@
 3월에 [한재엽님의 테크 인터뷰 깃허브, 알고리즘](https://github.com/JaeYeopHan/Interview_Question_for_Beginner/tree/master/Algorithm)를 보고 감명 받아 복기 기록을 작성하기 시작했습니다.
 
 ### 투 포인터
+[백준 20366 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/1d50d82ef415f8556c717dfc227ff2e6629fd4eb)
+
 [백준 2143 사고 과정](https://github.com/michaelkimm/Algorithm_diary/commit/98ba76166ef604d8aa4fb547353421e972bcfb25)
 
 [백준 1253 사고 과정](https://github.com/michaelkimm/Algorithm_diary/commit/a2664414dd5abb1ee09f3edf8885ed523af1589a)
