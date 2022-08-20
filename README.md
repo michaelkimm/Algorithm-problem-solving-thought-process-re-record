@@ -181,3 +181,5 @@
 [백준 17837 사고과정](https://github.com/michaelkimm/Algorithm_diary/commit/4b17d1ec39ff48c77a56e52fe7e8ea1a3fb5b7d3)
 
 [백준 20057 사고과정](https://github.com/michaelkimm/Algorithm_diary/commit/4bf4c67e899e449863434468d60ed11d5084ffb4)
+
+[백준 7453 사고과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/5fcfadd68e7cbcde5c2e80303fa8995ed0054e0e)
