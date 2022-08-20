@@ -7,14 +7,56 @@ def getCartasianProductSum(ary1, ary2):
     for v1 in ary1:
         for v2 in ary2:
             ret.append(v1 + v2)
+    ret.sort()
     return ret
 
-def getCountCompaction(ary):
-    cnts = defaultdict(int)
-    for v in ary:
-        cnts[v] += 1
+def bisect_left(ary, target):
+    left = 0
+    right = len(ary) - 1
+    ret = -1
+    while left <= right:
+        mid = (left + right) // 2
+        if ary[mid] == target:
+            ret = mid
+            break
+        elif ary[mid] > target:
+            right = mid - 1
+        elif ary[mid] < target:
+            left = mid + 1
+    if ret != -1:
+        while ret >= 0 and ary[ret] == target:
+            ret -= 1
+        ret += 1
+    return ret
+
+def bisect_right(ary, target):
+    left = 0
+    right = len(ary) - 1
+    ret = -1
+    while left <= right:
+        mid = (left + right) // 2
+        if ary[mid] == target:
+            ret = mid
+            break
+        elif ary[mid] > target:
+            right = mid - 1
+        elif ary[mid] < target:
+            left = mid + 1
+    if ret != -1:
+        while ret < len(ary) and ary[ret] == target:
+            ret += 1
+        ret -= 1
+    return ret
+
+def getCasesCntWhichMakesSumZero(cases, num):
     
-    return cnts
+    left = bisect_left(cases, -num)
+    right = bisect_right(cases, -num)
+    
+    if left == -1:
+        return 0
+    else:
+        return right - left + 1
 
 n = int(input())
 As = []
@@ -29,15 +71,11 @@ for _ in range(n):
     Ds.append(d)
 
 abSums = getCartasianProductSum(As, Bs)
-abSumCompacted = getCountCompaction(abSums)
-
 cdSums = getCartasianProductSum(Cs, Ds)
-cdSumCompacted = getCountCompaction(cdSums)
 
 answer = 0
 
-for abSumval, abSumCnt in abSumCompacted.items():
-    if cdSumCompacted[-abSumval] != 0:
-        answer += (abSumCnt * cdSumCompacted[-abSumval])
+for abSum in abSums:
+    answer += getCasesCntWhichMakesSumZero(cdSums, abSum)
 
 print(answer)
