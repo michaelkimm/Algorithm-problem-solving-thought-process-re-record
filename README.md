@@ -39,6 +39,8 @@
 ### 투 포인터
 [백준 20366 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/1d50d82ef415f8556c717dfc227ff2e6629fd4eb)
 
+[백준 2831 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/c8e889f23f9f0ad7df809854656faf1e6080398f)
+
 [백준 2143 사고 과정](https://github.com/michaelkimm/Algorithm_diary/commit/98ba76166ef604d8aa4fb547353421e972bcfb25)
 
 [백준 1253 사고 과정](https://github.com/michaelkimm/Algorithm_diary/commit/a2664414dd5abb1ee09f3edf8885ed523af1589a)
