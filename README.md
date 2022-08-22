@@ -67,6 +67,8 @@
 
 [백준 2904 사고 과정](https://github.com/michaelkimm/Algorithm_diary/commit/57765d37377e7c06f8bf578ae8919b93b32fd08c)
 
+[백준 16398 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/65a31db36d10d29a97c2acb924b65ef627275e0f)
+
 ### 에라토스테네스의 체
 [백준 17425 사고 과정](https://github.com/michaelkimm/Algorithm_diary/commit/e1d695120d6cb443294ceee15d4c09b9e556dcd3)
 
