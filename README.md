@@ -53,6 +53,8 @@
 
 [백준 2143 사고 과정](https://github.com/michaelkimm/Algorithm_diary/commit/9f44835a2957016737f83d13efdb6226b124bb2c)
 
+[백준 1806 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/380dba94fe6710f808bae4e63c9aeebdf7736970)
+
 ### 이진 탐색
 [프로그래머스 입국 심사 사고 과정](https://github.com/michaelkimm/Algorithm_practice/commit/7c7a40288016dc6d1fcf18c27c8acdf7e02cfe7c)
 
