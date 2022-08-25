@@ -63,6 +63,8 @@
 [프로그래머스 vowelDictionary 사고 과정](https://github.com/michaelkimm/Algorithm_diary/commit/2e34f255dbcfd608b9bafb705cfc5783d72566fd)
 
 ### 크루스칼 알고리즘
+[백준 17472 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/621b743f2e379aae0e8440efabc34b37392936fd)
+
 [백준 2887 사고 과정](https://github.com/michaelkimm/Algorithm_diary/commit/ac0f5525cd657bb9adeec2f7485fee06703c6fa1)
 
 [백준 2904 사고 과정](https://github.com/michaelkimm/Algorithm_diary/commit/57765d37377e7c06f8bf578ae8919b93b32fd08c)
