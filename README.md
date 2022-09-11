@@ -117,6 +117,8 @@
 
 [프로그래머스 등산 코스 정하기 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/32bf56617b13b535cdddb8b1e8c6801aa7b89c0e)
 
+[백준 13911 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/fbe41b73c26be370d461e3a2260eeec20c4daf5c)
+
 [백준 1854 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/e84d626eaa3371561843f5a8c1541eb7cf999907)
 
 [백준 1162 사고 과정](https://github.com/michaelkimm/Algorithm_diary/commit/f1d42644229848f9df31feb843ce48c633c42576)
