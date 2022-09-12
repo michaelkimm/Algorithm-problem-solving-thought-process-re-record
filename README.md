@@ -133,6 +133,8 @@
 
 [백준 6087 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/494054fd210d9022952c6423c5bf4b89e33d4151)
 
+[백준 1445 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/d542b54f15128108e78458ee11532eb52ba3f410)
+
 ### 브루트포스 알고리즘
 [프로그래머스 외벽 점검 사고 과정](https://github.com/michaelkimm/Algorithm_diary/commit/951be338a6bfa42bb452e3305e7205825f160d1c)
 
