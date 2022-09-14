@@ -7,18 +7,7 @@ di = [0, 0, 1, -1]
 dj = [1, -1, 0, 0]
 
 N, M, K = map(int, input().split())
-graph = ''
-for _ in range(N):
-    graph += input().strip()
-
-def getGraphElement(graph, i, j):
-    global N, M
-    return graph[i * M + j]
-
-
-def breakWall(graph, i, j):
-    global N, M
-    return graph[:i * M + j] + '0' + graph[i * M + j + 1:]
+graph = [list(map(int, input().strip())) for _ in range(N)]
 
 def bfs(graph, K):
     global di, dj, N, M
@@ -26,7 +15,8 @@ def bfs(graph, K):
     startPt = (0, 0)
     q = deque([(startPt[0], startPt[1], moveCnt, K)])
     # visited = i, j, graph, moveCnt
-    visited = set([(startPt[0], startPt[1], K)])
+    visited = [[[False for _ in range(K + 1)] for _ in range(M)] for _ in range(N)]
+    visited[startPt[0]][startPt[1]][K] = True
 
     ret = -1
     while q:
@@ -42,16 +32,16 @@ def bfs(graph, K):
             
             newK = K
             
-            if getGraphElement(graph, ni, nj) == '1':
-                if K == 0:
+            if graph[ni][nj] == 1:
+                if newK == 0:
                     continue
-                else:
+                elif newK >= 1:
                     newK -= 1
 
-            if (ni, nj, newK) in visited:
+            if visited[ni][nj][newK]:
                 continue
             q.append((ni, nj, moveCnt + 1, newK))
-            visited.add((ni, nj, newK))
+            visited[ni][nj][newK] = True
                     
     return ret
 
