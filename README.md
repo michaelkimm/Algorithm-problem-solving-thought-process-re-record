@@ -2,6 +2,11 @@
 
 알고리즘 공부에 대한 **개인적인 생각**과 **사고 과정 복기 기록**을 저장하는 공간입니다.
 
+### 커밋 기록 예시
+![image](https://user-images.githubusercontent.com/50356726/192216655-e47c65ce-0ce1-4c38-be62-76d502a15edf.png)
+
+
+
 <br>
 
 ## 들어가며
