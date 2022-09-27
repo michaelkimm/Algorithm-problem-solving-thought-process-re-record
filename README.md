@@ -151,6 +151,7 @@
 
 ### 그리디
 [프로그래머스 JumpAndTeleporting 사고 과정](https://github.com/michaelkimm/Algorithm_diary/commit/cffdc0d7b9b18cd9500c08f4bc7b2e3df0e71d48)
+[백준 1541 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/0e9cca39a3e43a489fc51afcadf631c8df6b4e93
 
 ### 구현
 [백준 21609 사고과정](https://github.com/michaelkimm/Algorithm_diary/commit/5e56b3145ddf401469f33ea91cad4f5b36bcffc9)
