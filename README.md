@@ -2,6 +2,11 @@
 
 알고리즘 공부에 대한 **개인적인 생각**과 **사고 과정 복기 기록**을 저장하는 공간입니다.
 
+### 커밋 기록 예시
+![image](https://user-images.githubusercontent.com/50356726/192216655-e47c65ce-0ce1-4c38-be62-76d502a15edf.png)
+
+
+
 <br>
 
 ## 들어가며
@@ -146,6 +151,8 @@
 
 ### 그리디
 [프로그래머스 JumpAndTeleporting 사고 과정](https://github.com/michaelkimm/Algorithm_diary/commit/cffdc0d7b9b18cd9500c08f4bc7b2e3df0e71d48)
+[백준 11501 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/bfd3e517a4c703eb42a37592f13b8d813227afa3)
+[백준 1541 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/0e9cca39a3e43a489fc51afcadf631c8df6b4e93
 
 ### 구현
 [백준 21609 사고과정](https://github.com/michaelkimm/Algorithm_diary/commit/5e56b3145ddf401469f33ea91cad4f5b36bcffc9)
