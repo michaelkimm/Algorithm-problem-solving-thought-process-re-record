@@ -98,6 +98,8 @@
 
 [백준 2143 사고 과정](https://github.com/michaelkimm/Algorithm_diary/commit/9f44835a2957016737f83d13efdb6226b124bb2c)
 
+[피보나치 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/b942b31980ec528e18087a913ded17b10128424c)
+
 ### BFS
 [프로그래머스 카드 짝 맞추기 2번째 풀이 사고 과정](https://github.com/michaelkimm/Algorithm_diary/commit/9744cb2fa8fc255f3f1bac1a2ad52cf07653748a)
 
