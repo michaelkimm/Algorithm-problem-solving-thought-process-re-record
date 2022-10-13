@@ -151,6 +151,7 @@
 [로봇격자문제 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/36d2028ba12291875ae348ccc56ec72fabfb359f)
 [피보나치 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/b942b31980ec528e18087a913ded17b10128424c)
 [하노이탑 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/0f4bc856cce7e2838e672c1eb45de77df2ee01b7)
+[영역 구하기 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/ae1da04f1ec9a7062beca0e62b9e0d15749ffe95)
 
 ### 그리디
 [프로그래머스 JumpAndTeleporting 사고 과정](https://github.com/michaelkimm/Algorithm_diary/commit/cffdc0d7b9b18cd9500c08f4bc7b2e3df0e71d48)
