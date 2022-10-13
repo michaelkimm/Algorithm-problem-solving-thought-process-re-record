@@ -150,6 +150,7 @@
 [토마토 사고 과정](https://github.com/michaelkimm/Algorithm_diary/commit/892194e7487220eda19cb843861f07be649caa8d)
 [로봇격자문제 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/36d2028ba12291875ae348ccc56ec72fabfb359f)
 [피보나치 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/b942b31980ec528e18087a913ded17b10128424c)
+[하노이탑 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/0f4bc856cce7e2838e672c1eb45de77df2ee01b7)
 
 ### 그리디
 [프로그래머스 JumpAndTeleporting 사고 과정](https://github.com/michaelkimm/Algorithm_diary/commit/cffdc0d7b9b18cd9500c08f4bc7b2e3df0e71d48)
