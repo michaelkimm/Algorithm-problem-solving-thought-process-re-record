@@ -115,7 +115,10 @@
 
 ### DFS
 [프로그래머스 길찾기게임 사고 과정](https://github.com/michaelkimm/Algorithm_diary/commit/8538d889b7c3d1be6334c8828d5a1ff980b0200f)
+
 [프로그래머스 DividingElectricGridByTwo 사고 과정](https://github.com/michaelkimm/Algorithm_diary/commit/b6832d135ab22f55604baf2316c3b7ffda738f30)
+
+[백준 2661 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/436dd17b2b6d6bfbb4cb0b31939cfa867427a015)
 
 ### 다익스트라 알고리즘
 [프로그래머스 코딩 테스트 공부 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/f1ac33a689f4035d7d19a9219c43f23252a9b4dd)
