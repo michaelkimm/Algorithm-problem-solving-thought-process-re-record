@@ -169,6 +169,8 @@
 
 [백준 19593 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/0dbd58cfce2e8369ec2ac1b1cbc85f934ea1c2dd)
 
+[백준 2872 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/174b2f8097cbe6c6a8764473f616c95958094a0a)
+
 ### 구현
 [백준 21609 사고과정](https://github.com/michaelkimm/Algorithm_diary/commit/5e56b3145ddf401469f33ea91cad4f5b36bcffc9)
 
