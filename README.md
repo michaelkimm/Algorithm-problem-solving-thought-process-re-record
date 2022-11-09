@@ -161,6 +161,8 @@
 [영역 구하기 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/ae1da04f1ec9a7062beca0e62b9e0d15749ffe95)
 
 ### 그리디
+[백준 2790 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/902a679faca920b9fdc6dbb086f01ded4fa4268c)
+
 [프로그래머스 JumpAndTeleporting 사고 과정](https://github.com/michaelkimm/Algorithm_diary/commit/cffdc0d7b9b18cd9500c08f4bc7b2e3df0e71d48)
 
 [백준 11501 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/bfd3e517a4c703eb42a37592f13b8d813227afa3)
