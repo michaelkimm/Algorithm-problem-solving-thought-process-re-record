@@ -163,6 +163,8 @@
 ### 그리디
 [백준 2790 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/902a679faca920b9fdc6dbb086f01ded4fa4268c)
 
+[백준 15903 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/ecd291fc7fb42c2d77752884a3e00ef572860784)
+
 [프로그래머스 JumpAndTeleporting 사고 과정](https://github.com/michaelkimm/Algorithm_diary/commit/cffdc0d7b9b18cd9500c08f4bc7b2e3df0e71d48)
 
 [백준 11501 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/bfd3e517a4c703eb42a37592f13b8d813227afa3)
