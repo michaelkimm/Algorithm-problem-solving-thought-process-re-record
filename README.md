@@ -163,6 +163,8 @@
 ### 그리디
 [백준 1946 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/c28f63b6af452a46652bc94af6c22117fe3918ba)
 
+[백준 2212 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/f3d012b01f715ce946863ea516139012f1c5ade7)
+
 [백준 2790 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/902a679faca920b9fdc6dbb086f01ded4fa4268c)
 
 [백준 1105 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/584e54f8a4262b64a56ed543a93caf0f9bf9c54d)
