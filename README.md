@@ -115,7 +115,10 @@
 
 ### DFS
 [프로그래머스 길찾기게임 사고 과정](https://github.com/michaelkimm/Algorithm_diary/commit/8538d889b7c3d1be6334c8828d5a1ff980b0200f)
+
 [프로그래머스 DividingElectricGridByTwo 사고 과정](https://github.com/michaelkimm/Algorithm_diary/commit/b6832d135ab22f55604baf2316c3b7ffda738f30)
+
+[백준 2661 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/436dd17b2b6d6bfbb4cb0b31939cfa867427a015)
 
 ### 다익스트라 알고리즘
 [프로그래머스 코딩 테스트 공부 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/f1ac33a689f4035d7d19a9219c43f23252a9b4dd)
@@ -149,10 +152,34 @@
 ### 재귀
 [토마토 사고 과정](https://github.com/michaelkimm/Algorithm_diary/commit/892194e7487220eda19cb843861f07be649caa8d)
 
+[로봇격자문제 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/36d2028ba12291875ae348ccc56ec72fabfb359f)
+
+[피보나치 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/b942b31980ec528e18087a913ded17b10128424c)
+
+[하노이탑 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/0f4bc856cce7e2838e672c1eb45de77df2ee01b7)
+
+[영역 구하기 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/ae1da04f1ec9a7062beca0e62b9e0d15749ffe95)
+
 ### 그리디
+[백준 1946 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/c28f63b6af452a46652bc94af6c22117fe3918ba)
+
+[백준 2212 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/f3d012b01f715ce946863ea516139012f1c5ade7)
+
+[백준 2790 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/902a679faca920b9fdc6dbb086f01ded4fa4268c)
+
+[백준 1105 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/584e54f8a4262b64a56ed543a93caf0f9bf9c54d)
+
+[백준 15903 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/ecd291fc7fb42c2d77752884a3e00ef572860784)
+
 [프로그래머스 JumpAndTeleporting 사고 과정](https://github.com/michaelkimm/Algorithm_diary/commit/cffdc0d7b9b18cd9500c08f4bc7b2e3df0e71d48)
+
 [백준 11501 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/bfd3e517a4c703eb42a37592f13b8d813227afa3)
-[백준 1541 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/0e9cca39a3e43a489fc51afcadf631c8df6b4e93
+
+[백준 1541 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/0e9cca39a3e43a489fc51afcadf631c8df6b4e93)
+
+[백준 19593 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/0dbd58cfce2e8369ec2ac1b1cbc85f934ea1c2dd)
+
+[백준 2872 사고 과정](https://github.com/michaelkimm/Algorithm-problem-solving-thought-process-re-record/commit/174b2f8097cbe6c6a8764473f616c95958094a0a)
 
 ### 구현
 [백준 21609 사고과정](https://github.com/michaelkimm/Algorithm_diary/commit/5e56b3145ddf401469f33ea91cad4f5b36bcffc9)
