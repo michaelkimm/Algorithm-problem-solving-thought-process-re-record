@@ -14,6 +14,4 @@ for i in range(len(numbers)):
             if dp[i] < dp[j] + 1:
                 dp[i] = dp[j] + 1
 
-print(dp)
-
 print(max(dp))
