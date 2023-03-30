@@ -14,12 +14,12 @@ for _ in range(P):
     lengths.append(l)
     capacities.append(c)
 
-dp = [[INF] + [0]*D for _ in range(P + 1)]
+dp = [INF] + [0]*D
 
 for i in range(1, P + 1):
+    dpMax = dp.copy()
     for j in range(1, D + 1):
-        dp[i][j] = dp[i - 1][j]
-        if j - lengths[i] >= 0 and dp[i - 1][j - lengths[i]] != 0:
-            dp[i][j] = max(getCombinedPipeCapacity(dp[i - 1][j - lengths[i]], capacities[i]), dp[i][j])
+        if j - lengths[i] >= 0 and dpMax[j - lengths[i]] != 0:
+            dp[j] = max(getCombinedPipeCapacity(dpMax[j - lengths[i]], capacities[i]), dpMax[j])
 
-print(dp[P][D])
+print(dp[D])
