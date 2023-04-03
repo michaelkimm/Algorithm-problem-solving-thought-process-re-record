@@ -12,13 +12,10 @@ for i in range(n):
     #     activatedStoneDict[i] = stoneValues[i]
     if activatedCnt < k:
         # 기존에 활성화된 돌에 경험치 추가
-        for j in range(activatedCnt):
-            answer += stoneValues[i]
+        answer += (stoneValues[i] * activatedCnt)
         activatedCnt += 1
     else:
         # 기존에 활성화된 돌에 경험치 추가
-        for j in range(activatedCnt):
-            answer += stoneValues[i]
-
+        answer += (stoneValues[i] * activatedCnt)
 
 print(answer)
