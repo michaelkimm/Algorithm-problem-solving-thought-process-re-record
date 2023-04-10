@@ -10,8 +10,6 @@ def dijkstra(keys, start, graphDict, n):
     needToVisitFirst = dict()
     for key in keys:
         needToVisitFirst[key] = '-'
-    # for node, c in graphDict[start]:
-        # needToVisitFirst[node] = node
 
     distDict = dict()
     for key in keys:
