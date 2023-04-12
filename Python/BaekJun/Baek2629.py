@@ -1,3 +1,4 @@
+from collections import defaultdict
 import sys
 input = sys.stdin.readline
 
@@ -7,26 +8,19 @@ for v in sorted(list(map(int, input().split()))):
     choos.append([0] + [v])
 ballCnt = int(input())
 balls = list(map(int, input().split()))
-maxBallWeight = 20
+ballSum = sum(sum(cs) for cs in choos)
 
-dp = [[0 for _ in range(maxBallWeight + 1)] for _ in range(N + 1)]
+dp = [defaultdict(int) for _ in range(N + 1)]
 dp[0][0] = 1
 for chooIdx in range(1, N + 1):
-    for weight in range(maxBallWeight + 1):
+    for weight in range(-ballSum, ballSum + 1):
         tmp = 0
         for choo in choos[chooIdx]:
-            if weight - choo >= 0:
-                tmp += dp[chooIdx - 1][weight - choo]
-            # print(choo - weight)
-            if maxBallWeight >= choo - weight >= 0 and (weight - choo) != (choo - weight):
-                tmp += dp[chooIdx - 1][choo - weight]
+            # 추를 공 반대 편에 두는 경우
+            tmp += dp[chooIdx - 1][weight - choo]
+            # 추를 공과 같이 두는 경우
+            tmp += dp[chooIdx - 1][weight + choo]
         dp[chooIdx][weight] = tmp
-
-for line in choos:
-    print(line)
-
-for line in dp:
-    print(line)
 
 answer = []
 for ball in balls:
