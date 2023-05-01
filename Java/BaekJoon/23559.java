@@ -24,6 +24,9 @@ class Main {
     }
 
     public static void main(String[] args) throws IOException {
+
+        Math.abs
+
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         String[] inputs = bufferedReader.readLine().split(" ");
         int N = Integer.parseInt(inputs[0]);
