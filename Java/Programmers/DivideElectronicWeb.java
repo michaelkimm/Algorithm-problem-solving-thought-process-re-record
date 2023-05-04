@@ -1,28 +1,36 @@
+import java.util.*;
+
 class Solution {
     
     int[][] map;
-    int answer = Integer.MAX_VALUE;
-    int tmpResult = 0;
-    boolean[] visited;
     
-    public void dfs(int n, int[][] wires, int curNode) {
-        for (int i = 1; i <= n; i++) {
-            if (visited[i]) {
-                continue;
+    int answer = Integer.MAX_VALUE;
+  
+    public int bfs(int n, int[][] wires, int startNode, int[] ignoreLine) {
+        LinkedList<Integer> stack = new LinkedList<>();
+        boolean[] visited = new boolean[n + 1];
+        int cnt = 1;
+        visited[startNode] = true;
+        stack.add(startNode);
+        while (stack.size() > 0) {
+            int curNode = stack.pollLast().intValue();
+            for (int nextNode = 1; nextNode <= n; nextNode++) {
+                if (visited[nextNode] || map[curNode][nextNode] == 0) {
+                    continue;
+                }
+                if ((ignoreLine[0] == curNode && ignoreLine[1] == nextNode) || (ignoreLine[1] == curNode && ignoreLine[0] == nextNode)) {
+                    continue;
+                }
+               
+                visited[nextNode] = true;
+                stack.add(nextNode);
+                cnt += 1;
             }
-            if (map[curNode][i] == 0) {
-                continue;
-            }
-            
-            visited[i] = true;
-            tmpResult += 1;
-            dfs(n, wires, i);
-            visited[i] = false;
         }
+        return cnt;
     }
     
     public int solution(int n, int[][] wires) {
-        visited = new boolean[n + 1];
         map = new int[n + 1][n + 1];
         for (int[] wire : wires) {
             int u = wire[0];
@@ -32,25 +40,14 @@ class Solution {
         }
         
         for (int i = 0; i < wires.length; i++) {
-            visited[wires[i][0]] = true;
-            visited[wires[i][1]] = true;
-            map[wires[i][0]][wires[i][1]] = 0;
-            map[wires[i][1]][wires[i][0]] = 0;
+            int n1 = wires[i][0];
+            int n2 = wires[i][1];
             
-            tmpResult = 1;
-            dfs(n, wires, wires[i][0]);
-            int result1 = tmpResult;
-            tmpResult = 1;
-            dfs(n, wires, wires[i][1]);
-            int result2 = tmpResult;
+            int[] ignoreLine = wires[i];
+            int result1 = bfs(n, wires, n1, ignoreLine);
+            int result2 = bfs(n, wires, n2, ignoreLine);
             answer = Math.min(answer, Math.abs(result1 - result2));
-            
-            visited[wires[i][0]] = false;
-            visited[wires[i][1]] = false;
-            map[wires[i][0]][wires[i][1]] = 1;
-            map[wires[i][1]][wires[i][0]] = 1;
         }
-        
         
         return answer;
     }
