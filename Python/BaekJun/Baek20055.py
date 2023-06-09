@@ -2,67 +2,38 @@ from collections import deque
 import sys
 input = sys.stdin.readline
 
-def printBelts(tops, bottoms, robots, durabilityLists = []):
-    print("tops:", tops)
-    print("bots:", bottoms)
-    print("robots:", robots)
-    print("durs:", durabilityLists)
-    print("=====================")
-
-
-def spinBelts(tops, bottoms, robots):
-    bottoms.append(tops.pop())
-    tops.appendleft(bottoms.popleft())
-    # 로봇 또한 벨트와 함께 회전
-    for i in range(len(robots) - 2, -1, -1):
-        if robots[i]:
-            robots[i + 1] = True
-            robots[i] = False
-        if i + 1 == len(robots) - 1 and robots[i + 1]:
-            robots[i + 1] = False
-
-
-def getZeroCnt(durabilityLists):
-    cnt = 0
-    for i in range(len(durabilityLists)):
-        if durabilityLists[i] == 0:
-            cnt += 1
-    return cnt
-
-def moveRobot(tops, bottoms, durabilityLists, robots):
-    newZeroCnt = 0
-    for robotIdx in range(len(robots) - 2, -1, -1):
-        if robots[robotIdx] and not(robots[robotIdx + 1]) and durabilityLists[tops[robotIdx + 1]] >= 1:
-            if robotIdx + 1 != len(robots) - 1:
-                robots[robotIdx + 1] = True
-            else:
-                robots[robotIdx + 1] = False
-            robots[robotIdx] = False
-            durabilityLists[tops[robotIdx + 1]] -= 1
-            if durabilityLists[tops[robotIdx + 1]] == 0:
-                newZeroCnt += 1
-            
-
-    return newZeroCnt
 
 N, K = map(int, input().split())
+durabilitys = deque(list(map(int, input().split())))
+haveRobots = deque([False for _ in range(2 * N)])
 
-tops = deque([k for k in range(1, N + 1)])
-bottoms = deque([k for k in range(2*N, N, -1)])
-durabilityLists = list(map(int, input().split()))
-durabilityLists.insert(0, -1)
 
-zeroCnt = getZeroCnt(durabilityLists)
-robots = [False for _ in range(N)]
-
+zeroCnt = 0
 result = 1
 while (zeroCnt < K):
-    spinBelts(tops, bottoms, robots)
-    zeroCnt += moveRobot(tops, bottoms, durabilityLists, robots)
-    if durabilityLists[tops[0]] != 0:
-        robots[0] = True
-        durabilityLists[tops[0]] -= 1
-        if durabilityLists[tops[0]] == 0:
+    # 벨트가 각 칸 위에 있는 로봇과 함께 한 칸 회전
+    durabilitys.rotate(1)
+    haveRobots.rotate(1)
+    haveRobots[N - 1] = False
+
+    # 로봇 이동
+    if any(haveRobots):
+        for robotIdx in range(N - 2, -1, -1):
+            # 현재 칸에 로봇 있고, 다음 칸에 로봇 없고, 다음 칸에 내구도가 1 이상 남아 있어야함.
+            if haveRobots[robotIdx] and not haveRobots[robotIdx + 1] and durabilitys[robotIdx + 1] >= 1:
+                haveRobots[robotIdx + 1] = True
+                haveRobots[robotIdx] = False
+                durabilitys[robotIdx + 1] -= 1
+                if durabilitys[robotIdx + 1] == 0:
+                    zeroCnt += 1
+                if robotIdx + 1 == N - 1:
+                    haveRobots[N - 1] = False
+
+    # 올리는 위치에 로봇 올리기
+    if durabilitys[0] > 0:
+        haveRobots[0] = True
+        durabilitys[0] -= 1
+        if durabilitys[0] == 0:
             zeroCnt += 1
     result += 1
 
