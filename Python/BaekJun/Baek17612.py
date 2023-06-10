@@ -7,43 +7,28 @@ N, k = map(int, input().split())
 customers = [list(map(int, input().split())) for _ in range(N)]
 timeLefts = [0 for _ in range(k)]
 queues = [deque([]) for _ in range(k)]
+inputHp = []
+# O(KlogK)
+for i in range(k):
+    heapq.heappush(inputHp, (0, i))
+
+goOutList = []
+# O(NlogK)
 for i in range(N):
-    appendIdx = timeLefts.index(min(timeLefts))
-    timeLefts[appendIdx] += customers[i][1]
-    queues[appendIdx].append(customers[i])
+    cId, cWaitTime = customers[i]
+    # O(logK)
+    totalWaitTime, appendQIdx = heapq.heappop(inputHp)
+    queues[appendQIdx].append((cId, cWaitTime))
+    # O(logK)
+    newTotalWaitTime = totalWaitTime + cWaitTime
+    heapq.heappush(inputHp, (newTotalWaitTime, appendQIdx))
+    goOutList.append((newTotalWaitTime, -appendQIdx, cId))
 
-# init hp
-hp = []
-for qIdx in range(len(queues)):
-    cid, cVal = queues[qIdx].popleft()
-    heapq.heappush(hp, (cVal, -qIdx, cid))
-
-result = []
-while hp:
-    # 감소될 시간 get
-    cVal, _, _ = hp[0]
-
-    # hp 내 모든 남은 시간 감소
-    for i in range(len(hp)):
-        tmpVal, tmpQIdx, tmpId = hp[i]
-        tmpVal -= cVal
-        hp[i] = (tmpVal, tmpQIdx, tmpId)
-    
-    # hp에 사람 있고, hp top이 0이면 계속 뽑기
-    poppedQList = []
-    while hp and hp[0][0] == 0:
-        tmpVal, tmpQIdx, tmpId = heapq.heappop(hp)
-        result.append(tmpId)
-        poppedQList.append(tmpQIdx)
-    
-    # hp에서 뽑힌 사람이 속한 열에서 popoleft 후 hp 삽입
-    for tmpQIdx in poppedQList:
-        if queues[-tmpQIdx]:
-            tmpId, tmpVal = queues[-tmpQIdx].popleft()
-            heapq.heappush(hp, (tmpVal, tmpQIdx, tmpId))
-
+goOutList.sort()
+print(goOutList)
 answer = 0
-for i, val in enumerate(result):
-    answer += ((i + 1) * val)
+for i, val in enumerate(goOutList):
+    _, _, cId = val
+    answer += ((i + 1) * cId)
 
 print(answer)
