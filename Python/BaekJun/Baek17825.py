@@ -1,95 +1,39 @@
 import sys
 input = sys.stdin.readline
 
-class Node:
-    def __init__(self, val):
-        self.blueLine = []
-        self.redLine = []
-        self.horses = []
-        self.val = val
-        self.isEnd = False
-    
-    def addBlueLine(self, target):
-        self.blueLine.append(target)
-
-    def addRedLine(self, target):
-        self.redLine.append(target)
-
-    def addHorse(self, horseNum):
-        self.horses.append(horseNum)
-
-    def extractHorse(self, horseNum):
-        self.horses.remove(horseNum)
-
-    def existsHorse(self, horseNum):
-        result = self.horses.index(horseNum)
-        return True if result != -1 : False
-
-    def existsAnyHorse(self):
-        return True if len(self.horses) != 0 : False
-
-    def setEnd(self):
-        self.isEnd = True
-
-    def isEnd(self):
-        return self.isEnd
+scores = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 0, 13 ,16, 19, 25, 30, 35, 22, 24, 28, 27, 26]
+graph = [[1], [2], [3], [4], [5], [6, 22], [7], [8], [9], [10], [11, 28], [12], [13], [14], [15], [16, 30], [17], [18], [19], [20], [21], [], [23], [24], [25], [26], [27], [20], [29], [25], [31], [32], [25]]
 
 
-start = 0
-end = 50
-graph = [[] for _ in range(end + 1)]
+dice = list(map(int, input().split()))
+answer = 0
 
-def initializeGraph(graph):
-    global start, end
+def backTracking(loc, result, horces):
+    global dice, scores, graph, answer
+    if loc >= 10:
+        answer = max(answer, result)
+        return
 
-    # 노드 정의
-    startNode = Node(0)
-    n1 = Node(2)
-    startNode.addRedLine(n1)
+    for i in range(4):
+        x = horces[i]
+        if x == 21:
+            continue
+        if len(graph[x]) == 2:
+            x =  graph[x][1]
+        else:
+            x = graph[x][0]
 
-    n2 = Node(4)
-    n1.addRedLine(n2)
-    
-    n3 = Node(6)
-    n2.addRedLine(n3)
+        for _ in range(1, dice[loc]):
+            if not graph[x]:
+                break
+            x = graph[x][0]
 
-    n4 = Node(8)
-    n3.addRedLine(n4)
-
-    n5 = Node(10)
-    n4.addRedLine(n5)
-
-    n6 = Node(12)
-    n7 = Node(14)
-    n8 = Node(16)
-    n9 = Node(18)
-    n10 = Node(20)
-    n11 = Node(22)
-    n12 = Node(24)
-    n13 = Node(26)
-    n14 = Node(28)
-    n15 = Node(30)
-    n16 = Node(32)
-    n17 = Node(34)
-    n18 = Node(36)
-    n19 = Node(38)
-    n20 = Node(40)
-
-    n21 = Node(13)
-    n22 = Node(16)
-    n23 = Node(19)
-    n24 = Node(25)
-    n25 = Node(22)
-    n26 = Node(24)
-    n27 = Node(28)
-    n28 = Node(27)
-    n29 = Node(26)
-    n30 = Node(30)
-    n31 = Node(35)
-
-    end = Node(0)
-    end.setEnd()
-
-    # 노드 연결
+        if x == 21 or (x not in horces):
+            before = horces[i]
+            horces[i] = x
+            backTracking(loc + 1, result + scores[x], horces)
+            horces[i] = before
 
 
+backTracking(0, 0, [0, 0, 0, 0])
+print(answer)
