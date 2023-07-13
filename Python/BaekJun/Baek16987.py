@@ -3,34 +3,40 @@ import sys
 input = sys.stdin.readline
 
 N = int(input())
-eggInfos = [list(map(int, input().split())) for _ in range(N)]
+durabilities = []
+weights = []
+for _ in range(N):
+    d, w = map(int, input().split())
+    durabilities.append(d)
+    weights.append(w)
 
-def hit(hitIdx, onHandIdx, eggInfos):
-    onHandDur, onHandWt = eggInfos[onHandIdx]
-    hitDur, hitWt = eggInfos[hitIdx]
-    if onHandDur <= 0 or hitDur <= 0:
-        return 0
-    onHandDur -= hitWt
-    hitDur -= onHandWt
-    eggInfos[onHandIdx] = (onHandDur, onHandWt)
-    eggInfos[hitIdx] = (hitDur, hitWt)
-    brokeCnt = 0
-    if onHandDur <= 0:
-        brokeCnt += 1
-    if hitDur <= 0:
-        brokeCnt += 1
-    return brokeCnt
-    
-# print(list(product([v for v in range(N)], repeat=N)))
 answer = 0
-for case in product([v for v in range(N)], repeat=N):
-    onHandIdx = 0
-    caseAnswer = 0
-    caseEggInfo = [v for v in eggInfos]
-    for hitIdx in case:
-        if hitIdx == onHandIdx:
+
+def recursive(onHandIdx, brokenCnt):
+    global N, answer
+    if onHandIdx >= N:
+        answer = max(answer, brokenCnt)
+        return
+    
+    for hitIdx in range(N):
+        if onHandIdx == hitIdx:
             continue
-        caseAnswer += hit(hitIdx, onHandIdx, caseEggInfo)
-        onHandIdx += 1
-    answer = max(answer, caseAnswer)
+        beforeHitIdxDur = durabilities[hitIdx]
+        beforeOnHandDur = durabilities[onHandIdx]
+        beforeBrokenCnt = brokenCnt
+        if durabilities[onHandIdx] > 0 and durabilities[hitIdx] > 0:
+            durabilities[onHandIdx] -= weights[hitIdx]
+            durabilities[hitIdx] -= weights[onHandIdx]
+            if durabilities[onHandIdx] <= 0:
+                brokenCnt += 1
+            if durabilities[hitIdx] <= 0:
+                brokenCnt += 1
+
+        recursive(onHandIdx + 1, brokenCnt)
+
+        durabilities[onHandIdx] = beforeOnHandDur
+        durabilities[hitIdx] = beforeHitIdxDur
+        brokenCnt = beforeBrokenCnt
+
+recursive(0, 0)
 print(answer)
