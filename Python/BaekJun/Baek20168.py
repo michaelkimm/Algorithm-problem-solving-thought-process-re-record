@@ -30,6 +30,28 @@ def dfs(start, end, maxCost, totalCost):
         dfs(v, end , max(maxCost, c), totalCost + c)
         visited[v] = False
 
+def dfs(start, end):
+    global answer, C
+    stack = [(start, 0, 0)] # start, maxCost, totalCost
+    visited[start] = True
+    while stack:
+        curNode, maxCost, totalCost = stack.pop()
+        # print("curNode:", curNode, "\tmaxCost:", maxCost, "\ttotalCost:", totalCost)
+
+        if curNode == end:
+            if totalCost <= C:
+                answer = min(answer, maxCost)
+            visited[end] = False
+            continue
+    
+        for v, c in graph[curNode]:
+            if visited[v]:
+                continue
+
+            visited[v] = True
+            stack.append((v, max(maxCost, c), totalCost + c))
+
+
 def dij():
     global N, M, A, B, C, answer
     distance = [INF for _ in range(N + 1)]
@@ -49,7 +71,7 @@ def dij():
             distance[v] = newMaxCost
             heapq.heappush(hp, (newMaxCost, newTotalCost, v))
 
-dij()
+dfs(A, B)
 
 if answer == INF:
     print(-1)
